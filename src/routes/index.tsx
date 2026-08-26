@@ -2,9 +2,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
-  BadgeCheck,
   Building2,
-  CheckCircle2,
   MessageCircle,
   Quote,
   Search,
