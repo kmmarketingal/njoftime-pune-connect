@@ -21,17 +21,17 @@ import { activeJobsQuery } from "@/lib/jobs";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Njoftime Pune — Oferta pune në Shqipëri dhe Kosovë" },
+      { title: "Njoftime Pune — Oferta pune ne Shqiperi dhe Kosove" },
       {
         name: "description",
         content:
-          "Agjenci punësimi që lidh kompanitë me punëkërkues në Shqipëri dhe Kosovë. Shiko ofertat aktive dhe apliko direkt në WhatsApp, pa regjistrim.",
+          "Agjenci punesimi qe lidh kompanite me punekerkues ne Shqiperi dhe Kosove. Shiko ofertat aktive dhe apliko direkt ne WhatsApp, pa regjistrim.",
       },
-      { property: "og:title", content: "Njoftime Pune — Oferta pune në Shqipëri dhe Kosovë" },
+      { property: "og:title", content: "Njoftime Pune — Oferta pune ne Shqiperi dhe Kosove" },
       {
         property: "og:description",
         content:
-          "Oferta pune të verifikuara. Apliko pa regjistrim dhe merr përgjigje direkt në WhatsApp.",
+          "Oferta pune te verifikuara. Apliko pa regjistrim dhe merr pergjigje direkt ne WhatsApp.",
       },
     ],
   }),
@@ -40,44 +40,44 @@ export const Route = createFileRoute("/")({
 });
 
 const STATS = [
-  { icon: BadgeCheck, value: "1.200+", label: "Punë të plotësuara" },
-  { icon: Users, value: "3.500+", label: "Punëtorë të vendosur" },
-  { icon: Building2, value: "180+", label: "Partnerë & kompani" },
+  { icon: BadgeCheck, value: "1.200+", label: "Pune te plotesuara" },
+  { icon: Users, value: "3.500+", label: "Punetore te vendosur" },
+  { icon: Building2, value: "180+", label: "Partnere & kompani" },
 ];
 
 const STEPS = [
   {
     icon: Search,
-    title: "1. Shiko ofertën",
-    text: "Zgjidh nga ofertat aktive sipas qytetit dhe llojit të punës që të përshtatet.",
+    title: "1. Shiko oferten",
+    text: "Zgjidh nga ofertat aktive sipas qytetit dhe llojit te punes qe te pershtatet.",
   },
   {
     icon: Send,
-    title: "2. Apliko në 1 minutë",
-    text: "Plotëso formularin e shkurtër — pa llogari, pa CV të detyrueshme.",
+    title: "2. Apliko ne 1 minute",
+    text: "Ploteso formularin e shkurter — pa llogari, pa CV te detyrueshme.",
   },
   {
     icon: MessageCircle,
-    title: "3. Merr përgjigje në WhatsApp",
-    text: "Aplikimi shkon direkt në WhatsApp-in tonë dhe ju kontaktojmë shpejt.",
+    title: "3. Merr pergjigje ne WhatsApp",
+    text: "Aplikimi shkon direkt ne WhatsApp-in tone dhe ju kontaktojme shpejt.",
   },
 ];
 
 const TESTIMONIALS = [
   {
     name: "Arben K.",
-    role: "Murator — vendosur në Gjermani",
-    text: "Brenda dy javësh më ndihmuan me kontratën dhe dokumentet. Komunikim korrekt dhe i shpejtë në WhatsApp.",
+    role: "Murator — vendosur ne Gjermani",
+    text: "Brenda dy javesh me ndihmuan me kontraten dhe dokumentet. Komunikim korrekt dhe i shpejte ne WhatsApp.",
   },
   {
     name: "Elona M.",
-    role: "Kameriere — Tiranë",
-    text: "Apliko pa CV, brenda ditës më telefonuan. Puna është pikërisht si e përshkruan njoftimi.",
+    role: "Kameriere — Tirane",
+    text: "Apliko pa CV, brenda dites me telefonuan. Puna eshte pikerisht si e pershkruan njoftimi.",
   },
   {
     name: "Driton S.",
-    role: "Operator prodhimi — Prishtinë",
-    text: "Më pëlqeu që gjithçka ndodhi në WhatsApp, pa forma të gjata. Sot punoj me kontratë të rregullt.",
+    role: "Operator prodhimi — Prishtine",
+    text: "Me pelqeu qe gjithçka ndodhi ne WhatsApp, pa forma te gjata. Sot punoj me kontrate te rregullt.",
   },
 ];
 
@@ -93,33 +93,33 @@ function Home() {
           <div className="animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-3 py-1 text-xs font-semibold">
               <BadgeCheck className="h-3.5 w-3.5" />
-              Agjenci punësimi · Shqipëri & Kosovë
+              Agjenci punesimi · Shqiperi & Kosove
             </span>
             <h1 className="mt-5 text-balance-tight text-4xl font-extrabold leading-[1.08] sm:text-5xl">
-              Puna e duhur, pa humbur kohë me formularë të gjatë.
+              Puna e duhur, pa humbur kohe me formulare te gjate.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/80">
-              Njoftime Pune bashkëpunon me kompani dhe agjenci partnere për të plotësuar pozicione
-              reale në Shqipëri, Kosovë dhe jashtë vendit. Zgjidh ofertën, apliko në një minutë dhe
-              merr përgjigje direkt në WhatsApp.
+              Njoftime Pune bashkepunon me kompani dhe agjenci partnere per te plotesuar pozicione
+              reale ne Shqiperi, Kosove dhe jashte vendit. Zgjidh oferten, apliko ne nje minute dhe
+              merr pergjigje direkt ne WhatsApp.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild variant="hero" size="xl">
                 <Link to="/pune">
-                  Shiko Ofertat e Punës
+                  Shiko Ofertat e Punes
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
               <Button asChild variant="onDark" size="xl">
-                <Link to="/rreth-nesh">Rreth agjencisë</Link>
+                <Link to="/rreth-nesh">Rreth agjencise</Link>
               </Button>
             </div>
             <ul className="mt-8 grid gap-2 text-sm text-primary-foreground/80 sm:grid-cols-2">
               {[
-                "Pa regjistrim, pa pagesë për punëkërkuesin",
-                "Oferta të verifikuara nga partnerë",
-                "Përgjigje e shpejtë në WhatsApp",
-                "Ndihmë me dokumentacionin",
+                "Pa regjistrim, pa pagese per punekerkuesin",
+                "Oferta te verifikuara nga partnere",
+                "Pergjigje e shpejte ne WhatsApp",
+                "Ndihme me dokumentacionin",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" />
@@ -133,7 +133,7 @@ function Home() {
             <div className="overflow-hidden rounded-3xl border border-primary-foreground/15 shadow-[var(--shadow-lift)]">
               <img
                 src={heroImage}
-                alt="Punëtorë të vendosur në punë nga agjencia Njoftime Pune"
+                alt="Punetore te vendosur ne pune nga agjencia Njoftime Pune"
                 width={1600}
                 height={1104}
                 className="h-full w-full object-cover"
@@ -169,14 +169,14 @@ function Home() {
       <section className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold">Ofertat më të reja</h2>
+            <h2 className="text-3xl font-bold">Ofertat me te reja</h2>
             <p className="mt-2 text-muted-foreground">
-              Pozicione të hapura tani nga partnerët tanë.
+              Pozicione te hapura tani nga partneret tane.
             </p>
           </div>
           <Button asChild variant="outline">
             <Link to="/pune">
-              Të gjitha ofertat
+              Te gjitha ofertat
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -184,7 +184,7 @@ function Home() {
 
         {featured.length === 0 ? (
           <p className="mt-8 rounded-2xl border border-dashed border-border p-10 text-center text-muted-foreground">
-            Së shpejti do publikohen oferta të reja. Shkruani në WhatsApp për t'u njoftuar të parët.
+            Se shpejti do publikohen oferta te reja. Shkruani ne WhatsApp per t'u njoftuar te paret.
           </p>
         ) : (
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -200,7 +200,7 @@ function Home() {
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
           <h2 className="text-center text-3xl font-bold">Si Funksionon</h2>
           <p className="mx-auto mt-2 max-w-xl text-center text-muted-foreground">
-            Tre hapa të thjeshtë nga oferta deri në kontakt.
+            Tre hapa te thjeshte nga oferta deri ne kontakt.
           </p>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {STEPS.map((step) => (
@@ -221,8 +221,8 @@ function Home() {
 
       {/* TESTIMONIALS */}
       <section className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
-        <h2 className="text-3xl font-bold">Çfarë thonë punëtorët</h2>
-        <p className="mt-2 text-muted-foreground">Përvoja reale nga kandidatë të vendosur në punë.</p>
+        <h2 className="text-3xl font-bold">Çfare thone punetoret</h2>
+        <p className="mt-2 text-muted-foreground">Pervoja reale nga kandidate te vendosur ne pune.</p>
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {TESTIMONIALS.map((item) => (
             <figure
@@ -245,17 +245,17 @@ function Home() {
       {/* CTA */}
       <section className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="rounded-3xl bg-gradient-hero px-6 py-12 text-center text-primary-foreground shadow-[var(--shadow-lift)] sm:px-12">
-          <h2 className="text-3xl font-bold">Gati për hapin tjetër?</h2>
+          <h2 className="text-3xl font-bold">Gati per hapin tjeter?</h2>
           <p className="mx-auto mt-3 max-w-xl text-primary-foreground/80">
-            Zgjidh një ofertë dhe kliko “Apliko Tani” — aplikimi dërgohet direkt në WhatsApp për
-            përgjigje të shpejtë.
+            Zgjidh nje oferte dhe kliko “Apliko Tani” — aplikimi dergohet direkt ne WhatsApp per
+            pergjigje te shpejte.
           </p>
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
             <Button asChild variant="hero" size="xl">
-              <Link to="/pune">Shiko Ofertat e Punës</Link>
+              <Link to="/pune">Shiko Ofertat e Punes</Link>
             </Button>
             <Button asChild variant="onDark" size="xl">
-              <Link to="/kontakt">Kontakto agjencinë</Link>
+              <Link to="/kontakt">Kontakto agjencine</Link>
             </Button>
           </div>
         </div>

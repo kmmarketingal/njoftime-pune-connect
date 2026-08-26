@@ -21,8 +21,8 @@ export function SiteFooter() {
             <span className="font-display text-lg font-bold">Njoftime Pune</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-primary-foreground/75">
-            Agjenci punësimi që lidh punëdhënësit dhe agjencitë partnere me punëkërkues në Shqipëri
-            dhe Kosovë. Apliko pa regjistrim — përgjigjen e merr direkt në WhatsApp.
+            Agjenci punesimi qe lidh punedhenesit dhe agjencite partnere me punekerkues ne Shqiperi
+            dhe Kosove. Apliko pa regjistrim — pergjigjen e merr direkt ne WhatsApp.
           </p>
           <div className="mt-5 flex gap-2">
             <a
@@ -67,7 +67,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link to="/pune" className="hover:text-primary-foreground">
-                Ofertat e Punës
+                Ofertat e Punes
               </Link>
             </li>
             <li>
@@ -102,7 +102,7 @@ export function SiteFooter() {
             </li>
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-              <span>Tiranë, Shqipëri · Prishtinë, Kosovë</span>
+              <span>Tirane, Shqiperi · Prishtine, Kosove</span>
             </li>
           </ul>
         </div>
@@ -110,10 +110,10 @@ export function SiteFooter() {
 
       <div className="border-t border-primary-foreground/15">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-primary-foreground/65 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>© {new Date().getFullYear()} Njoftime Pune. Të gjitha të drejtat e rezervuara.</p>
+          <p>© {new Date().getFullYear()} Njoftime Pune. Te gjitha te drejtat e rezervuara.</p>
           <p className="flex flex-wrap gap-4">
-            <span>Kushtet e përdorimit</span>
-            <span>Politika e privatësisë</span>
+            <span>Kushtet e perdorimit</span>
+            <span>Politika e privatesise</span>
             <Link to="/admin" className="hover:text-primary-foreground">
               Admin
             </Link>

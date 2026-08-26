@@ -26,16 +26,16 @@ import { ALBANIA_CITIES, KOSOVO_CITIES, activeJobsQuery } from "@/lib/jobs";
 export const Route = createFileRoute("/pune/")({
   head: () => ({
     meta: [
-      { title: "Ofertat e Punës — Njoftime Pune" },
+      { title: "Ofertat e Punes — Njoftime Pune" },
       {
         name: "description",
         content:
-          "Të gjitha ofertat aktive të punës në Shqipëri, Kosovë dhe jashtë vendit. Filtro sipas qytetit dhe llojit të punës, apliko direkt në WhatsApp.",
+          "Te gjitha ofertat aktive te punes ne Shqiperi, Kosove dhe jashte vendit. Filtro sipas qytetit dhe llojit te punes, apliko direkt ne WhatsApp.",
       },
-      { property: "og:title", content: "Ofertat e Punës — Njoftime Pune" },
+      { property: "og:title", content: "Ofertat e Punes — Njoftime Pune" },
       {
         property: "og:description",
-        content: "Oferta pune aktive me filtra sipas qytetit dhe llojit të kontratës.",
+        content: "Oferta pune aktive me filtra sipas qytetit dhe llojit te kontrates.",
       },
     ],
   }),
@@ -68,10 +68,10 @@ function JobsPage() {
     <SiteShell>
       <section className="bg-gradient-hero text-primary-foreground">
         <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
-          <h1 className="text-4xl font-extrabold">Ofertat e Punës</h1>
+          <h1 className="text-4xl font-extrabold">Ofertat e Punes</h1>
           <p className="mt-3 max-w-2xl text-primary-foreground/80">
-            {jobs.length} oferta aktive nga partnerët tanë. Zgjidh pozicionin, lexo kërkesat dhe
-            apliko në një minutë — përgjigjen e merr direkt në WhatsApp.
+            {jobs.length} oferta aktive nga partneret tane. Zgjidh pozicionin, lexo kerkesat dhe
+            apliko ne nje minute — pergjigjen e merr direkt ne WhatsApp.
           </p>
         </div>
       </section>
@@ -91,11 +91,11 @@ function JobsPage() {
               otherCities={otherCities}
             />
             <Select value={type} onValueChange={setType}>
-              <SelectTrigger aria-label="Filtro sipas llojit të punës">
-                <SelectValue placeholder="Lloji i punës" />
+              <SelectTrigger aria-label="Filtro sipas llojit te punes">
+                <SelectValue placeholder="Lloji i punes" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value={ALL}>Të gjitha llojet</SelectItem>
+                <SelectItem value={ALL}>Te gjitha llojet</SelectItem>
                 {types.map((t) => (
                   <SelectItem key={t} value={t}>
                     {t}
@@ -123,7 +123,7 @@ function JobsPage() {
 
         {filtered.length === 0 ? (
           <p className="mt-4 rounded-2xl border border-dashed border-border p-10 text-center text-muted-foreground">
-            Nuk kemi oferta që përputhen me filtrat. Provo t'i pastrosh filtrat ose kthehu më vonë.
+            Nuk kemi oferta qe perputhen me filtrat. Provo t'i pastrosh filtrat ose kthehu me vone.
           </p>
         ) : (
           <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -148,7 +148,7 @@ function CityFilter({
 }) {
   const [open, setOpen] = useState(false);
 
-  const allLabel = "Të gjitha qytetet";
+  const allLabel = "Te gjitha qytetet";
   const selectedLabel = value === ALL ? allLabel : value;
 
   return (
@@ -164,7 +164,7 @@ function CityFilter({
         <span className="text-muted-foreground">▼</span>
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Kërko qytetin..." />
+        <CommandInput placeholder="Kerko qytetin..." />
         <CommandList className="max-h-[60vh]">
           <CommandEmpty>Nuk u gjet qytet.</CommandEmpty>
           <CommandItem
@@ -176,7 +176,7 @@ function CityFilter({
           >
             {allLabel}
           </CommandItem>
-          <CommandGroup heading="Shqipëri">
+          <CommandGroup heading="Shqiperi">
             {ALBANIA_CITIES.map((c) => (
               <CommandItem
                 key={c}
@@ -190,7 +190,7 @@ function CityFilter({
               </CommandItem>
             ))}
           </CommandGroup>
-          <CommandGroup heading="Kosovë">
+          <CommandGroup heading="Kosove">
             {KOSOVO_CITIES.map((c) => (
               <CommandItem
                 key={c}
@@ -205,7 +205,7 @@ function CityFilter({
             ))}
           </CommandGroup>
           {otherCities.length > 0 && (
-            <CommandGroup heading="Jashtë vendit">
+            <CommandGroup heading="Jashte vendit">
               {otherCities.map((c) => (
                 <CommandItem
                   key={c}
