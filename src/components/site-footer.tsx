@@ -4,6 +4,8 @@ import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-
 
 import { WHATSAPP_NUMBER } from "@/lib/jobs";
 
+const COPYRIGHT_YEAR = 2026;
+
 export function SiteFooter() {
   return (
     <footer className="mt-24 bg-gradient-hero text-primary-foreground">
@@ -110,7 +112,7 @@ export function SiteFooter() {
 
       <div className="border-t border-primary-foreground/15">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-primary-foreground/65 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>© {new Date().getFullYear()} Njoftime Pune. Te gjitha te drejtat e rezervuara.</p>
+          <p>© {COPYRIGHT_YEAR} Njoftime Pune. Te gjitha te drejtat e rezervuara.</p>
           <p className="flex flex-wrap gap-4">
             <span>Kushtet e perdorimit</span>
             <span>Politika e privatesise</span>
