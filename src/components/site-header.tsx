@@ -10,6 +10,7 @@ const NAV = [
   { to: "/pune", label: "Ofertat e Punës" },
   { to: "/rreth-nesh", label: "Rreth Nesh" },
   { to: "/kontakt", label: "Kontakt" },
+  { to: "/admin", label: "Paneli Admin" },
 ] as const;
 
 export function SiteHeader() {
