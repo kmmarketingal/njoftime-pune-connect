@@ -11,7 +11,7 @@ import {
   Users,
 } from "lucide-react";
 
-import heroAsset from "@/assets/direction_1_hero.png.asset.json";
+import heroAsset from "@/assets/direction_1_hero-3.png.asset.json";
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
