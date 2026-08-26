@@ -83,41 +83,13 @@ function JobsPage() {
             Filtra
           </span>
           <div className="grid flex-1 gap-3 sm:grid-cols-2">
-            <Select value={city} onValueChange={setCity}>
-              <SelectTrigger aria-label="Filtro sipas qytetit">
-                <SelectValue placeholder="Qyteti" />
-              </SelectTrigger>
-              <SelectContent className="max-h-72">
-                <SelectItem value={ALL}>Të gjitha qytetet</SelectItem>
-                <SelectGroup>
-                  <SelectLabel>Shqipëri</SelectLabel>
-                  {ALBANIA_CITIES.map((c) => (
-                    <SelectItem key={c} value={c}>
-                      {c}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-                <SelectGroup>
-                  <SelectLabel>Kosovë</SelectLabel>
-                  {KOSOVO_CITIES.map((c) => (
-                    <SelectItem key={c} value={c}>
-                      {c}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-                {otherCities.length > 0 && (
-                  <SelectGroup>
-                    <SelectLabel>Jashtë vendit</SelectLabel>
-                    {otherCities.map((c) => (
-                      <SelectItem key={c} value={c}>
-                        {c}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                )}
-              </SelectContent>
-
-            </Select>
+            <CityFilter
+              value={city}
+              onChange={(v) => {
+                setCity(v);
+              }}
+              otherCities={otherCities}
+            />
             <Select value={type} onValueChange={setType}>
               <SelectTrigger aria-label="Filtro sipas llojit të punës">
                 <SelectValue placeholder="Lloji i punës" />
