@@ -25,10 +25,11 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
+const ADMIN_EMAIL = "admin@njoftimepune.al";
+
 function AuthPage() {
   const navigate = useNavigate();
-  const [mode, setMode] = useState<"login" | "signup">("login");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -40,29 +41,15 @@ function AuthPage() {
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
-    if (password.length < 6) {
-      toast.error("Fjalëkalimi duhet të ketë minimum 6 karaktere");
-      return;
-    }
     setLoading(true);
     try {
-      if (mode === "login") {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        toast.success("Hyrja u krye me sukses");
-        navigate({ to: "/admin" });
-      } else {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: { emailRedirectTo: `${window.location.origin}/admin` },
-        });
-        if (error) throw error;
-        toast.success("Llogaria u krijua. Provo të hysh tani.");
-        setMode("login");
-      }
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Ndodhi një gabim");
+      const email = username.includes("@") ? username.trim() : ADMIN_EMAIL;
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      toast.success("Hyrja u krye me sukses");
+      navigate({ to: "/admin" });
+    } catch {
+      toast.error("Përdoruesi ose fjalëkalimi është i pasaktë");
     } finally {
       setLoading(false);
     }
@@ -85,23 +72,21 @@ function AuthPage() {
           <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
             <Lock className="h-5 w-5" />
           </span>
-          <h1 className="mt-4 text-2xl font-bold">
-            {mode === "login" ? "Hyrje Administratori" : "Krijo llogari admini"}
-          </h1>
+          <h1 className="mt-4 text-2xl font-bold">Hyrje Administratori</h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
             Panel i mbrojtur për menaxhimin e ofertave të punës.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div className="space-y-1.5">
-              <Label>Email</Label>
+              <Label>Përdoruesi</Label>
               <Input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
-                autoComplete="email"
-                placeholder="admin@njoftimepune.al"
+                autoComplete="username"
+                placeholder="admin"
               />
             </div>
             <div className="space-y-1.5">
@@ -111,26 +96,16 @@ function AuthPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                minLength={6}
-                autoComplete={mode === "login" ? "current-password" : "new-password"}
+                autoComplete="current-password"
                 placeholder="••••••••"
               />
             </div>
             <Button type="submit" size="lg" className="w-full" disabled={loading}>
-              {loading ? "Duke procesuar…" : mode === "login" ? "Hyr në panel" : "Krijo llogarinë"}
+              {loading ? "Duke procesuar…" : "Hyr në panel"}
             </Button>
           </form>
-
-          <button
-            type="button"
-            onClick={() => setMode(mode === "login" ? "signup" : "login")}
-            className="mt-4 w-full text-center text-sm font-medium text-primary hover:underline"
-          >
-            {mode === "login"
-              ? "Nuk ke llogari admini? Krijoje tani"
-              : "Ke llogari? Kthehu në hyrje"}
-          </button>
         </div>
+
 
         <p className="mt-5 text-center text-sm text-primary-foreground/70">
           <Link to="/" className="hover:text-primary-foreground">
