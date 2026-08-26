@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import logoAsset from "@/assets/logo.png.asset.json";
+import logoUrl from "@/assets/logo.png";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
           <img
-            src={logoAsset.url}
+            src={logoUrl}
             alt="Logo Njoftime Pune"
             width={40}
             height={40}
