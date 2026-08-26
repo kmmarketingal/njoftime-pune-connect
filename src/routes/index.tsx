@@ -91,42 +91,21 @@ function Home() {
       <section className="relative overflow-hidden bg-[#162b42] text-primary-foreground">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
           <div className="animate-fade-up">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-3 py-1 text-xs font-semibold">
-              <BadgeCheck className="h-3.5 w-3.5" />
-              Agjenci punesimi · Shqiperi & Kosove
-            </span>
-            <h1 className="mt-5 text-balance-tight text-4xl font-extrabold leading-[1.08] sm:text-5xl">
-              Puna e duhur, pa humbur kohe me formulare te gjate.
+            <h1 className="text-balance-tight text-3xl font-extrabold leading-[1.1] sm:text-4xl">
+              Puna e duhur, pa humbur kohe.
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/80">
-              Njoftime Pune bashkepunon me kompani dhe agjenci partnere per te plotesuar pozicione
-              reale ne Shqiperi, Kosove dhe jashte vendit. Zgjidh oferten, apliko ne nje minute dhe
-              merr pergjigje direkt ne WhatsApp.
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-primary-foreground/80">
+              Oferta pune reale ne Shqiperi, Kosove dhe jashte vendit. Apliko pa regjistrim dhe
+              merr pergjigje ne WhatsApp.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild variant="hero" size="xl">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Button asChild variant="hero" size="lg">
                 <Link to="/pune">
                   Shiko Ofertat e Punes
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild variant="onDark" size="xl">
-                <Link to="/rreth-nesh">Rreth agjencise</Link>
-              </Button>
             </div>
-            <ul className="mt-8 grid gap-2 text-sm text-primary-foreground/80 sm:grid-cols-2">
-              {[
-                "Pa regjistrim, pa pagese per punekerkuesin",
-                "Oferta te verifikuara nga partnere",
-                "Pergjigje e shpejte ne WhatsApp",
-                "Ndihme me dokumentacionin",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" />
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div className="relative animate-fade-in">
