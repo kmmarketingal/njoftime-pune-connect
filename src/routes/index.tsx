@@ -11,7 +11,7 @@ import {
   Users,
 } from "lucide-react";
 
-import heroAsset from "@/assets/direction_1_hero.png.asset.json";
+import heroAsset from "@/assets/direction_1_hero-3.png.asset.json";
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
@@ -80,77 +80,6 @@ const TESTIMONIALS = [
   },
 ];
 
-function HeroIllustration() {
-  return (
-    <svg
-      viewBox="0 0 420 360"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-full w-full"
-      aria-hidden="true"
-    >
-      <circle cx="320" cy="95" r="52" fill="url(#sun)" />
-      <path
-        d="M280 80 h8 M300 72 h14 M338 68 h10 M355 78 h12"
-        stroke="#D39424"
-        strokeWidth="2"
-        strokeLinecap="round"
-        opacity="0.6"
-      />
-      <path
-        d="M0 330 C120 310 160 250 200 210 C240 170 260 150 300 140 C340 130 380 145 420 150"
-        stroke="#D39424"
-        strokeWidth="3"
-        strokeDasharray="8 6"
-        fill="none"
-        opacity="0.85"
-      />
-      <path
-        d="M180 328 C210 300 230 260 260 235 C290 210 330 200 360 195"
-        stroke="#D39424"
-        strokeWidth="3"
-        fill="none"
-      />
-      <g transform="translate(152, 262)">
-        <circle cx="18" cy="14" r="10" fill="#D39424" />
-        <path
-          d="M18 24 L18 50 M8 36 L28 36 M12 70 L18 50 L24 70"
-          stroke="#F5F0E0"
-          strokeWidth="4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path d="M24 28 L36 22" stroke="#D39424" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="36" cy="22" r="3" fill="#D39424" />
-      </g>
-      <path
-        d="M310 328 L322 300 H346 L358 328 M330 300 V285 M326 285 H334"
-        stroke="#D39424"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.7"
-      />
-      <path
-        d="M360 328 V295 H380 V328 M370 295 V285 M366 285 H374"
-        stroke="#D39424"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.6"
-      />
-      <circle cx="40" cy="80" r="3" fill="#D39424" opacity="0.5" />
-      <circle cx="72" cy="120" r="2" fill="#D39424" opacity="0.4" />
-      <circle cx="28" cy="180" r="2.5" fill="#D39424" opacity="0.35" />
-      <defs>
-        <radialGradient id="sun" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(320 95) rotate(90) scale(52)">
-          <stop stopColor="#F5D78C" />
-          <stop offset="1" stopColor="#D39424" />
-        </radialGradient>
-      </defs>
-    </svg>
-  );
-}
 
 function Home() {
   const { data: jobs } = useSuspenseQuery(activeJobsQuery);
@@ -191,8 +120,12 @@ function Home() {
           </div>
 
           <div className="relative animate-fade-in">
-            <div className="relative aspect-[4/3] rounded-3xl border border-primary-foreground/10 bg-gradient-to-br from-primary-deep/40 to-transparent p-6 shadow-[var(--shadow-lift)] lg:p-10">
-              <HeroIllustration />
+            <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-primary-foreground/10 shadow-[var(--shadow-lift)]">
+              <img
+                src={heroAsset.url}
+                alt="Njoftime Pune - Gjej punen tende"
+                className="h-full w-full object-cover"
+              />
             </div>
             <div className="absolute -bottom-4 -left-4 rounded-2xl border border-primary-foreground/10 bg-card px-5 py-4 text-card-foreground shadow-[var(--shadow-lift)]">
               <p className="text-xs font-medium text-muted-foreground">Oferta aktive tani</p>
