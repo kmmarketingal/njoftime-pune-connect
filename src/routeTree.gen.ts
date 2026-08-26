@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as RrethNeshRouteImport } from './routes/rreth-nesh'
 import { Route as PuneIndexRouteImport } from './routes/pune.index'
@@ -18,6 +19,11 @@ import { Route as PuneIdRouteImport } from './routes/pune.$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KontaktRoute = KontaktRouteImport.update({
@@ -43,6 +49,7 @@ const PuneIdRoute = PuneIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/kontakt': typeof KontaktRoute
   '/rreth-nesh': typeof RrethNeshRoute
   '/pune/$id': typeof PuneIdRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/kontakt': typeof KontaktRoute
   '/rreth-nesh': typeof RrethNeshRoute
   '/pune/$id': typeof PuneIdRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/kontakt': typeof KontaktRoute
   '/rreth-nesh': typeof RrethNeshRoute
   '/pune/$id': typeof PuneIdRoute
@@ -65,14 +74,22 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kontakt' | '/rreth-nesh' | '/pune/$id' | '/pune/'
+  fullPaths: '/' | '/auth' | '/kontakt' | '/rreth-nesh' | '/pune/$id' | '/pune/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kontakt' | '/rreth-nesh' | '/pune/$id' | '/pune'
-  id: '__root__' | '/' | '/kontakt' | '/rreth-nesh' | '/pune/$id' | '/pune/'
+  to: '/' | '/auth' | '/kontakt' | '/rreth-nesh' | '/pune/$id' | '/pune'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/kontakt'
+    | '/rreth-nesh'
+    | '/pune/$id'
+    | '/pune/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
   KontaktRoute: typeof KontaktRoute
   RrethNeshRoute: typeof RrethNeshRoute
   PuneIdRoute: typeof PuneIdRoute
@@ -86,6 +103,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kontakt': {
@@ -121,6 +145,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
   KontaktRoute: KontaktRoute,
   RrethNeshRoute: RrethNeshRoute,
   PuneIdRoute: PuneIdRoute,
