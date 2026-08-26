@@ -158,13 +158,32 @@ export const allJobsQuery = queryOptions({
   },
 });
 
+const ALBANIAN_MONTHS = [
+  "janar",
+  "shkurt",
+  "mars",
+  "prill",
+  "maj",
+  "qershor",
+  "korrik",
+  "gusht",
+  "shtator",
+  "tetor",
+  "nentor",
+  "dhjetor",
+] as const;
+
 export function formatDate(value: string | null) {
   if (!value) return "—";
-  return new Date(value).toLocaleDateString("sq-AL", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "—";
+
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  const month = ALBANIAN_MONTHS[date.getUTCMonth()];
+  const year = date.getUTCFullYear();
+
+  return `${day} ${month} ${year}`;
 }
 
 /** Nderton linkun wa.me me mesazh te para-plotesuar dhe te koduar sakte. */
