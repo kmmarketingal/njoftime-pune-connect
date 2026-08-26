@@ -10,33 +10,122 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as RrethNeshRouteImport } from './routes/rreth-nesh'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as PuneIndexRouteImport } from './routes/pune.index'
+import { Route as PuneIdRouteImport } from './routes/pune.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RrethNeshRoute = RrethNeshRouteImport.update({
+  id: '/rreth-nesh',
+  path: '/rreth-nesh',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const PuneIndexRoute = PuneIndexRouteImport.update({
+  id: '/pune/',
+  path: '/pune/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PuneIdRoute = PuneIdRouteImport.update({
+  id: '/pune/$id',
+  path: '/pune/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/kontakt': typeof KontaktRoute
+  '/rreth-nesh': typeof RrethNeshRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/pune/$id': typeof PuneIdRoute
+  '/pune/': typeof PuneIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/kontakt': typeof KontaktRoute
+  '/rreth-nesh': typeof RrethNeshRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/pune/$id': typeof PuneIdRoute
+  '/pune': typeof PuneIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/kontakt': typeof KontaktRoute
+  '/rreth-nesh': typeof RrethNeshRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/pune/$id': typeof PuneIdRoute
+  '/pune/': typeof PuneIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/kontakt'
+    | '/rreth-nesh'
+    | '/admin'
+    | '/pune/$id'
+    | '/pune/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/kontakt'
+    | '/rreth-nesh'
+    | '/admin'
+    | '/pune/$id'
+    | '/pune'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/kontakt'
+    | '/rreth-nesh'
+    | '/_authenticated/admin'
+    | '/pune/$id'
+    | '/pune/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  KontaktRoute: typeof KontaktRoute
+  RrethNeshRoute: typeof RrethNeshRoute
+  PuneIdRoute: typeof PuneIdRoute
+  PuneIndexRoute: typeof PuneIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +137,77 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rreth-nesh': {
+      id: '/rreth-nesh'
+      path: '/rreth-nesh'
+      fullPath: '/rreth-nesh'
+      preLoaderRoute: typeof RrethNeshRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/pune/': {
+      id: '/pune/'
+      path: '/pune'
+      fullPath: '/pune/'
+      preLoaderRoute: typeof PuneIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pune/$id': {
+      id: '/pune/$id'
+      path: '/pune/$id'
+      fullPath: '/pune/$id'
+      preLoaderRoute: typeof PuneIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  KontaktRoute: KontaktRoute,
+  RrethNeshRoute: RrethNeshRoute,
+  PuneIdRoute: PuneIdRoute,
+  PuneIndexRoute: PuneIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
