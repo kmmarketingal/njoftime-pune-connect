@@ -7,11 +7,17 @@ import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
 import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
