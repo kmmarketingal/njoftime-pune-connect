@@ -120,8 +120,12 @@ function Home() {
           </div>
 
           <div className="relative animate-fade-in">
-            <div className="relative aspect-[4/3] rounded-3xl border border-primary-foreground/10 bg-gradient-to-br from-primary-deep/40 to-transparent p-6 shadow-[var(--shadow-lift)] lg:p-10">
-              <HeroIllustration />
+            <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-primary-foreground/10 shadow-[var(--shadow-lift)]">
+              <img
+                src={heroAsset.url}
+                alt="Njoftime Pune - Gjej punen tende"
+                className="h-full w-full object-cover"
+              />
             </div>
             <div className="absolute -bottom-4 -left-4 rounded-2xl border border-primary-foreground/10 bg-card px-5 py-4 text-card-foreground shadow-[var(--shadow-lift)]">
               <p className="text-xs font-medium text-muted-foreground">Oferta aktive tani</p>
