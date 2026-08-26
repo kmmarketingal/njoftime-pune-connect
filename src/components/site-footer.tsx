@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import logoAsset from "@/assets/logo.png.asset.json";
-import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { WHATSAPP_NUMBER } from "@/lib/jobs";
 
@@ -20,10 +20,10 @@ export function SiteFooter() {
               className="h-10 w-10 rounded-xl bg-primary-foreground/95 object-contain p-0.5"
             />
 
-            <span className="font-display text-lg font-bold">Njoftime Pune</span>
+            <span className="font-sans text-lg font-bold">Njoftime Pune</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-primary-foreground/75">
-            Agjenci punesimi qe lidh punedhenesit dhe agjencite partnere me punekerkues ne Shqiperi
+            Agjensi punesimi qe lidh punedhenesit dhe agjencite partnere me punekerkues ne Shqiperi
             dhe Kosove. Apliko pa regjistrim — pergjigjen e merr direkt ne WhatsApp.
           </p>
           <div className="mt-5 flex gap-2">
@@ -37,22 +37,13 @@ export function SiteFooter() {
               <MessageCircle className="h-5 w-5" />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/njoftime_per_punetor"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary-foreground/12 transition-colors hover:bg-primary-foreground/25"
             >
               <Instagram className="h-5 w-5" />
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary-foreground/12 transition-colors hover:bg-primary-foreground/25"
-            >
-              <Facebook className="h-5 w-5" />
             </a>
           </div>
         </div>
@@ -80,6 +71,11 @@ export function SiteFooter() {
             <li>
               <Link to="/kontakt" className="hover:text-primary-foreground">
                 Kontakt
+              </Link>
+            </li>
+            <li>
+              <Link to="/admin" className="hover:text-primary-foreground">
+                Paneli Admin
               </Link>
             </li>
           </ul>

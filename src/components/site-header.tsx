@@ -30,7 +30,7 @@ export function SiteHeader() {
           />
 
           <span className="flex flex-col leading-none">
-            <span className="font-display text-base font-bold tracking-tight">Njoftime Pune</span>
+            <span className="font-sans text-base font-bold tracking-tight">Njoftime Pune</span>
             <span className="text-[11px] font-medium text-muted-foreground">
               Agjenci punesimi
             </span>
