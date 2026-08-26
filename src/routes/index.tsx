@@ -12,7 +12,7 @@ import {
   Users,
 } from "lucide-react";
 
-import heroImage from "@/assets/hero-workers.jpg";
+import heroImage from "@/assets/hero-workers.png";
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
