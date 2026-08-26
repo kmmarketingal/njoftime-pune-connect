@@ -66,19 +66,23 @@ function JobsPage() {
 
   return (
     <SiteShell>
-      <section className="bg-gradient-hero text-primary-foreground">
-        <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
-          <h1 className="text-4xl font-extrabold">Ofertat e Punes</h1>
-          <p className="mt-3 max-w-2xl text-primary-foreground/80">
+      <section className="relative overflow-hidden bg-primary text-primary-foreground">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(211,148,36,0.18),transparent_40%)]" />
+        <div className="relative mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Ofertat</p>
+          <h1 className="mt-3 font-display text-4xl font-normal sm:text-5xl">
+            Pozicione aktive
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-primary-foreground/80">
             {jobs.length} oferta aktive nga partneret tane. Zgjidh pozicionin, lexo kerkesat dhe
             apliko ne nje minute — pergjigjen e merr direkt ne WhatsApp.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
-        <div className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-card)] sm:flex-row sm:items-center">
-          <span className="flex items-center gap-2 text-sm font-semibold">
+      <section className="relative mx-auto w-full max-w-6xl px-4 py-12 sm:px-6">
+        <div className="flex flex-col gap-4 rounded-3xl border border-border bg-card p-5 shadow-[var(--shadow-card)] sm:flex-row sm:items-center sm:p-6">
+          <span className="flex items-center gap-2 text-sm font-semibold text-foreground">
             <SlidersHorizontal className="h-4 w-4 text-primary" />
             Filtra
           </span>
@@ -117,16 +121,18 @@ function JobsPage() {
           )}
         </div>
 
-        <p className="mt-6 text-sm text-muted-foreground">
-          {filtered.length} rezultat{filtered.length === 1 ? "" : "e"}
-        </p>
+        <div className="mt-8 flex items-center justify-between border-b border-border pb-3">
+          <p className="text-sm text-muted-foreground">
+            {filtered.length} rezultat{filtered.length === 1 ? "" : "e"}
+          </p>
+        </div>
 
         {filtered.length === 0 ? (
-          <p className="mt-4 rounded-2xl border border-dashed border-border p-10 text-center text-muted-foreground">
+          <p className="mt-6 rounded-3xl border border-dashed border-border p-12 text-center text-muted-foreground">
             Nuk kemi oferta qe perputhen me filtrat. Provo t'i pastrosh filtrat ose kthehu me vone.
           </p>
         ) : (
-          <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((job) => (
               <JobCard key={job.id} job={job} />
             ))}
