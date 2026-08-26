@@ -47,7 +47,9 @@ export const Route = createFileRoute("/_authenticated/admin")({
       { property: "og:description", content: "Menaxhimi i ofertave të punës." },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(allJobsQuery),
   component: AdminPage,
+
 });
 
 type FormState = {
