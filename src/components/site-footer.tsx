@@ -20,7 +20,7 @@ export function SiteFooter() {
               className="h-10 w-10 rounded-xl bg-primary-foreground/95 object-contain p-0.5"
             />
 
-            <span className="font-display text-lg font-bold">Njoftime Pune</span>
+            <span className="font-sans text-lg font-bold">Njoftime Pune</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-primary-foreground/75">
             Agjenci punesimi qe lidh punedhenesit dhe agjencite partnere me punekerkues ne Shqiperi
