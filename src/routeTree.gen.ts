@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PuneIndexRouteImport } from './routes/pune.index'
+import { Route as PuneIdRouteImport } from './routes/pune.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const PuneIndexRoute = PuneIndexRouteImport.update({
   path: '/pune/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PuneIdRoute = PuneIdRouteImport.update({
+  id: '/pune/$id',
+  path: '/pune/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/pune/$id': typeof PuneIdRoute
   '/pune/': typeof PuneIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/pune/$id': typeof PuneIdRoute
   '/pune': typeof PuneIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/pune/$id': typeof PuneIdRoute
   '/pune/': typeof PuneIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/pune/'
+  fullPaths: '/' | '/pune/$id' | '/pune/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pune'
-  id: '__root__' | '/' | '/pune/'
+  to: '/' | '/pune/$id' | '/pune'
+  id: '__root__' | '/' | '/pune/$id' | '/pune/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PuneIdRoute: typeof PuneIdRoute
   PuneIndexRoute: typeof PuneIndexRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PuneIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pune/$id': {
+      id: '/pune/$id'
+      path: '/pune/$id'
+      fullPath: '/pune/$id'
+      preLoaderRoute: typeof PuneIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PuneIdRoute: PuneIdRoute,
   PuneIndexRoute: PuneIndexRoute,
 }
 export const routeTree = rootRouteImport
