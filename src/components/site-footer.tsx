@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/logo.png.asset.json";
+import logoUrl from "@/assets/logo.png";
 import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { WHATSAPP_NUMBER } from "@/lib/jobs";
@@ -11,7 +11,7 @@ export function SiteFooter() {
         <div className="md:col-span-2">
           <div className="flex items-center gap-2.5">
             <img
-              src={logoAsset.url}
+              src={logoUrl}
               alt="Logo Njoftime Pune"
               width={40}
               height={40}
