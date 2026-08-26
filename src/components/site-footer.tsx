@@ -9,9 +9,14 @@ export function SiteFooter() {
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-foreground/15">
-              <Briefcase className="h-4.5 w-4.5" />
-            </span>
+            <img
+              src={logoAsset.url}
+              alt="Logo Njoftime Pune"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-xl bg-primary-foreground/95 object-contain p-0.5"
+            />
+
             <span className="font-display text-lg font-bold">Njoftime Pune</span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-primary-foreground/75">

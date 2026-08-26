@@ -20,9 +20,14 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-hero text-primary-foreground shadow-[var(--shadow-card)]">
-            <Briefcase className="h-4.5 w-4.5" />
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="Logo Njoftime Pune"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-xl object-contain"
+          />
+
           <span className="flex flex-col leading-none">
             <span className="font-display text-base font-bold tracking-tight">Njoftime Pune</span>
             <span className="text-[11px] font-medium text-muted-foreground">
