@@ -12,12 +12,12 @@ export const Route = createFileRoute("/kontakt")({
       {
         name: "description",
         content:
-          "Kontaktoni agjencinë Njoftime Pune në WhatsApp +355 68 950 4445, me telefon ose email për oferta pune dhe bashkëpunime me kompani.",
+          "Kontaktoni agjencine Njoftime Pune ne WhatsApp +355 68 950 4445, me telefon ose email per oferta pune dhe bashkepunime me kompani.",
       },
       { property: "og:title", content: "Kontakt — Njoftime Pune" },
       {
         property: "og:description",
-        content: "Shkruaj në WhatsApp për oferta pune ose bashkëpunim si punëdhënës.",
+        content: "Shkruaj ne WhatsApp per oferta pune ose bashkepunim si punedhenes.",
       },
     ],
   }),
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/kontakt")({
 
 function Contact() {
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    "Përshëndetje! Kam një pyetje për ofertat e punës.",
+    "Pershendetje! Kam nje pyetje per ofertat e punes.",
   )}`;
 
   return (
@@ -35,15 +35,15 @@ function Contact() {
         <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
           <h1 className="text-4xl font-extrabold">Kontakt</h1>
           <p className="mt-3 max-w-2xl text-primary-foreground/80">
-            Rruga më e shpejtë për t'u përgjigjur është WhatsApp. Shkruani për ofertat e punës,
-            statusin e aplikimit ose për bashkëpunim si punëdhënës.
+            Rruga me e shpejte per t'u pergjigjur eshte WhatsApp. Shkruani per ofertat e punes,
+            statusin e aplikimit ose per bashkepunim si punedhenes.
           </p>
         </div>
       </section>
 
       <section className="mx-auto grid w-full max-w-6xl gap-6 px-4 py-14 sm:px-6 lg:grid-cols-3">
         <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)] lg:col-span-2">
-          <h2 className="text-xl font-bold">Të dhënat e kontaktit</h2>
+          <h2 className="text-xl font-bold">Te dhenat e kontaktit</h2>
           <ul className="mt-5 grid gap-5 sm:grid-cols-2">
             <ContactItem icon={Phone} label="Telefon">
               <a href="tel:+355689504445" className="hover:text-primary">
@@ -60,11 +60,11 @@ function Contact() {
                 info@njoftimepune.al
               </a>
             </ContactItem>
-            <ContactItem icon={MapPin} label="Zonat e shërbimit">
-              Tiranë, Durrës, Vlorë · Prishtinë, Ferizaj · Pozicione jashtë vendit
+            <ContactItem icon={MapPin} label="Zonat e sherbimit">
+              Tirane, Durres, Vlore · Prishtine, Ferizaj · Pozicione jashte vendit
             </ContactItem>
             <ContactItem icon={Clock} label="Orari">
-              E hënë – E shtunë, 09:00 – 19:00
+              E hene – E shtune, 09:00 – 19:00
             </ContactItem>
             <ContactItem icon={Instagram} label="Rrjetet sociale">
               <span className="flex gap-3">
@@ -83,9 +83,9 @@ function Contact() {
           <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary-foreground/15">
             <MessageCircle className="h-5 w-5" />
           </span>
-          <h2 className="mt-4 text-xl font-bold">Shkruaj direkt në WhatsApp</h2>
+          <h2 className="mt-4 text-xl font-bold">Shkruaj direkt ne WhatsApp</h2>
           <p className="mt-2 text-sm text-primary-foreground/80">
-            Përgjigjemi brenda orarit të punës, zakonisht në pak minuta.
+            Pergjigjemi brenda orarit te punes, zakonisht ne pak minuta.
           </p>
           <Button asChild variant="whatsapp" size="lg" className="mt-5 w-full">
             <a href={waLink} target="_blank" rel="noreferrer">

@@ -15,11 +15,11 @@ const schema = z.object({
   phone: z
     .string()
     .trim()
-    .min(6, { message: "Shkruaj një numër telefoni të vlefshëm" })
+    .min(6, { message: "Shkruaj nje numer telefoni te vlefshem" })
     .max(25)
-    .regex(/^[0-9+\s()-]+$/, { message: "Numri i telefonit ka karaktere të pavlefshme" }),
+    .regex(/^[0-9+\s()-]+$/, { message: "Numri i telefonit ka karaktere te pavlefshme" }),
   city: z.string().trim().min(2, { message: "Shkruaj qytetin" }).max(60),
-  message: z.string().trim().max(800, { message: "Mesazhi është shumë i gjatë" }),
+  message: z.string().trim().max(800, { message: "Mesazhi eshte shume i gjate" }),
 });
 
 type FieldErrors = Partial<Record<keyof z.infer<typeof schema>, string>>;
@@ -44,7 +44,7 @@ export function ApplyForm({ jobTitle }: { jobTitle: string }) {
         if (!next[key]) next[key] = issue.message;
       }
       setErrors(next);
-      toast.error("Plotëso saktë fushat e formularit");
+      toast.error("Ploteso sakte fushat e formularit");
       return;
     }
 
@@ -67,8 +67,8 @@ export function ApplyForm({ jobTitle }: { jobTitle: string }) {
         <div>
           <h2 className="text-lg font-bold">Apliko Tani</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Pa regjistrim. Plotëso të dhënat dhe aplikimi dërgohet direkt në WhatsApp — përgjigjen e
-            merr shpejt nga ekipi jonë.
+            Pa regjistrim. Ploteso te dhenat dhe aplikimi dergohet direkt ne WhatsApp — pergjigjen e
+            merr shpejt nga ekipi jone.
           </p>
         </div>
       </div>
@@ -106,16 +106,16 @@ export function ApplyForm({ jobTitle }: { jobTitle: string }) {
           <Input
             value={values.city}
             onChange={(e) => set("city", e.target.value)}
-            placeholder="Tiranë"
+            placeholder="Tirane"
             maxLength={60}
           />
         </Field>
         <div className="sm:col-span-2">
-          <Field label="Eksperienca / mesazh i shkurtër" error={errors.message}>
+          <Field label="Eksperienca / mesazh i shkurter" error={errors.message}>
             <Textarea
               value={values.message}
               onChange={(e) => set("message", e.target.value)}
-              placeholder="Shkurtimisht: eksperienca, disponibiliteti, gjuhët që flisni…"
+              placeholder="Shkurtimisht: eksperienca, disponibiliteti, gjuhet qe flisni…"
               rows={4}
               maxLength={800}
             />
@@ -125,12 +125,12 @@ export function ApplyForm({ jobTitle }: { jobTitle: string }) {
 
       <Button type="submit" variant="whatsapp" size="lg" className="mt-5 w-full">
         <MessageCircle className="h-5 w-5" />
-        Dërgo aplikimin në WhatsApp
+        Dergo aplikimin ne WhatsApp
       </Button>
 
       <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
         <ShieldCheck className="h-3.5 w-3.5" />
-        Të dhënat nuk ruhen në sistem — dërgohen vetëm si mesazh WhatsApp.
+        Te dhenat nuk ruhen ne sistem — dergohen vetem si mesazh WhatsApp.
       </p>
     </form>
   );

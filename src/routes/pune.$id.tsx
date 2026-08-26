@@ -32,7 +32,7 @@ export const Route = createFileRoute("/pune/$id")({
       };
     }
     const title = `${loaderData.title} — ${loaderData.city} | Njoftime Pune`;
-    const description = `${loaderData.title} në ${loaderData.city} · ${loaderData.jobType}. Apliko direkt në WhatsApp, pa regjistrim.`;
+    const description = `${loaderData.title} ne ${loaderData.city} · ${loaderData.jobType}. Apliko direkt ne WhatsApp, pa regjistrim.`;
     return {
       meta: [
         { title },
@@ -50,9 +50,9 @@ function JobNotFound() {
   return (
     <SiteShell>
       <div className="mx-auto w-full max-w-2xl px-4 py-24 text-center sm:px-6">
-        <h1 className="text-3xl font-bold">Kjo ofertë nuk është më aktive</h1>
+        <h1 className="text-3xl font-bold">Kjo oferte nuk eshte me aktive</h1>
         <p className="mt-3 text-muted-foreground">
-          Oferta mund të jetë plotësuar ose çaktivizuar. Shiko ofertat e tjera aktive.
+          Oferta mund te jete plotesuar ose çaktivizuar. Shiko ofertat e tjera aktive.
         </p>
         <Button asChild variant="hero" size="lg" className="mt-7">
           <Link to="/pune">Shiko ofertat aktive</Link>
@@ -82,7 +82,7 @@ function JobDetail() {
             className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-foreground/75 hover:text-primary-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            Të gjitha ofertat
+            Te gjitha ofertat
           </Link>
           <div className="mt-4 flex flex-wrap gap-2">
             <Badge className="bg-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/15">
@@ -100,13 +100,13 @@ function JobDetail() {
           ) : null}
           <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-primary-foreground/80">
             <span className="flex items-center gap-1.5">
-              <MapPin className="h-4 w-4" /> {job.city || "Sipas marrëveshjes"}
+              <MapPin className="h-4 w-4" /> {job.city || "Sipas marreveshjes"}
             </span>
             <span className="flex items-center gap-1.5">
               <Briefcase className="h-4 w-4" /> {job.job_type}
             </span>
             <span className="flex items-center gap-1.5">
-              <Banknote className="h-4 w-4" /> {job.salary ?? "Diskutohet në intervistë"}
+              <Banknote className="h-4 w-4" /> {job.salary ?? "Diskutohet ne interviste"}
             </span>
             <span className="flex items-center gap-1.5">
               <CalendarDays className="h-4 w-4" /> Publikuar: {formatDate(job.created_at)}
@@ -123,7 +123,7 @@ function JobDetail() {
       <section className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[1.4fr_1fr]">
         <div>
           <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
-            <h2 className="text-xl font-bold">Përshkrimi i pozicionit</h2>
+            <h2 className="text-xl font-bold">Pershkrimi i pozicionit</h2>
             <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
               {job.description.split("\n").filter(Boolean).map((para, i) => (
                 <p key={i}>{para}</p>
@@ -133,7 +133,7 @@ function JobDetail() {
 
           {requirements.length > 0 && (
             <div className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
-              <h2 className="text-xl font-bold">Kërkesat</h2>
+              <h2 className="text-xl font-bold">Kerkesat</h2>
               <ul className="mt-3 space-y-2.5">
                 {requirements.map((req) => (
                   <li key={req} className="flex items-start gap-2.5 text-sm text-muted-foreground">

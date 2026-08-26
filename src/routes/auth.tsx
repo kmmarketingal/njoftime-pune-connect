@@ -15,11 +15,11 @@ export const Route = createFileRoute("/auth")({
       { title: "Hyrje Administratori — Njoftime Pune" },
       {
         name: "description",
-        content: "Hyrje e mbrojtur vetëm për administratorët e Njoftime Pune.",
+        content: "Hyrje e mbrojtur vetem per administratoret e Njoftime Pune.",
       },
       { name: "robots", content: "noindex" },
       { property: "og:title", content: "Hyrje Administratori — Njoftime Pune" },
-      { property: "og:description", content: "Paneli i administrimit të ofertave të punës." },
+      { property: "og:description", content: "Paneli i administrimit te ofertave te punes." },
     ],
   }),
   component: AuthPage,
@@ -49,7 +49,7 @@ function AuthPage() {
       toast.success("Hyrja u krye me sukses");
       navigate({ to: "/admin" });
     } catch {
-      toast.error("Përdoruesi ose fjalëkalimi është i pasaktë");
+      toast.error("Perdoruesi ose fjalekalimi eshte i pasakte");
     } finally {
       setLoading(false);
     }
@@ -74,12 +74,12 @@ function AuthPage() {
           </span>
           <h1 className="mt-4 text-2xl font-bold">Hyrje Administratori</h1>
           <p className="mt-1.5 text-sm text-muted-foreground">
-            Panel i mbrojtur për menaxhimin e ofertave të punës.
+            Panel i mbrojtur per menaxhimin e ofertave te punes.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <div className="space-y-1.5">
-              <Label>Përdoruesi</Label>
+              <Label>Perdoruesi</Label>
               <Input
                 type="text"
                 value={username}
@@ -90,7 +90,7 @@ function AuthPage() {
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Fjalëkalimi</Label>
+              <Label>Fjalekalimi</Label>
               <Input
                 type="password"
                 value={password}
@@ -101,7 +101,7 @@ function AuthPage() {
               />
             </div>
             <Button type="submit" size="lg" className="w-full" disabled={loading}>
-              {loading ? "Duke procesuar…" : "Hyr në panel"}
+              {loading ? "Duke procesuar…" : "Hyr ne panel"}
             </Button>
           </form>
         </div>
@@ -109,7 +109,7 @@ function AuthPage() {
 
         <p className="mt-5 text-center text-sm text-primary-foreground/70">
           <Link to="/" className="hover:text-primary-foreground">
-            ← Kthehu në faqen publike
+            ← Kthehu ne faqen publike
           </Link>
         </p>
       </div>

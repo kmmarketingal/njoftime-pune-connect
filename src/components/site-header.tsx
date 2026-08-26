@@ -8,7 +8,7 @@ import { WHATSAPP_NUMBER } from "@/lib/jobs";
 
 const NAV = [
   { to: "/", label: "Kryefaqja" },
-  { to: "/pune", label: "Ofertat e Punës" },
+  { to: "/pune", label: "Ofertat e Punes" },
   { to: "/rreth-nesh", label: "Rreth Nesh" },
   { to: "/kontakt", label: "Kontakt" },
   { to: "/admin", label: "Paneli Admin" },
@@ -32,7 +32,7 @@ export function SiteHeader() {
           <span className="flex flex-col leading-none">
             <span className="font-display text-base font-bold tracking-tight">Njoftime Pune</span>
             <span className="text-[11px] font-medium text-muted-foreground">
-              Agjenci punësimi
+              Agjenci punesimi
             </span>
           </span>
         </Link>
@@ -59,7 +59,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          aria-label="Hap menunë"
+          aria-label="Hap menune"
           onClick={() => setOpen((v) => !v)}
           className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border md:hidden"
         >
@@ -84,7 +84,7 @@ export function SiteHeader() {
             ))}
             <Button asChild variant="whatsapp" className="mt-2">
               <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noreferrer">
-                Shkruaj në WhatsApp
+                Shkruaj ne WhatsApp
               </a>
             </Button>
           </nav>

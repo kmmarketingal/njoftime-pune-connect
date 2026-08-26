@@ -36,7 +36,7 @@ export function JobCard({ job }: { job: JobOffer }) {
       <dl className="mt-4 grid gap-2 text-sm text-muted-foreground">
         <div className="flex items-center gap-2">
           <MapPin className="h-4 w-4 text-primary" />
-          <dd>{job.city || "Sipas marrëveshjes"}</dd>
+          <dd>{job.city || "Sipas marreveshjes"}</dd>
         </div>
         <div className="flex items-center gap-2">
           <Briefcase className="h-4 w-4 text-primary" />
@@ -44,7 +44,7 @@ export function JobCard({ job }: { job: JobOffer }) {
         </div>
         <div className="flex items-center gap-2">
           <Banknote className="h-4 w-4 text-primary" />
-          <dd>{job.salary ?? "Diskutohet në intervistë"}</dd>
+          <dd>{job.salary ?? "Diskutohet ne interviste"}</dd>
         </div>
         <div className="flex items-center gap-2">
           <CalendarDays className="h-4 w-4 text-primary" />

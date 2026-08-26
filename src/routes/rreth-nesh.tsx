@@ -7,16 +7,16 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/rreth-nesh")({
   head: () => ({
     meta: [
-      { title: "Rreth Nesh — Njoftime Pune, agjenci punësimi" },
+      { title: "Rreth Nesh — Njoftime Pune, agjenci punesimi" },
       {
         name: "description",
         content:
-          "Njoftime Pune është agjenci punësimi që ndërmjetëson mes kompanive dhe punëkërkuesve në Shqipëri dhe Kosovë, me proces transparent dhe pa pagesë për kandidatët.",
+          "Njoftime Pune eshte agjenci punesimi qe ndermjeteson mes kompanive dhe punekerkuesve ne Shqiperi dhe Kosove, me proces transparent dhe pa pagese per kandidatet.",
       },
       { property: "og:title", content: "Rreth Nesh — Njoftime Pune" },
       {
         property: "og:description",
-        content: "Njihu me agjencinë që ka vendosur mijëra punëtorë në punë të rregullt.",
+        content: "Njihu me agjencine qe ka vendosur mijera punetore ne pune te rregullt.",
       },
     ],
   }),
@@ -26,23 +26,23 @@ export const Route = createFileRoute("/rreth-nesh")({
 const VALUES = [
   {
     icon: ShieldCheck,
-    title: "Transparencë",
-    text: "Publikojmë vetëm oferta reale, të konfirmuara nga punëdhënësi ose agjencia partnere.",
+    title: "Transparence",
+    text: "Publikojme vetem oferta reale, te konfirmuara nga punedhenesi ose agjencia partnere.",
   },
   {
     icon: HeartHandshake,
-    title: "Pa pagesë për kandidatët",
-    text: "Aplikimi është gjithmonë falas. Shpërblimi jonë vjen nga punëdhënësi.",
+    title: "Pa pagese per kandidatet",
+    text: "Aplikimi eshte gjithmone falas. Shperblimi jone vjen nga punedhenesi.",
   },
   {
     icon: Target,
-    title: "Përputhje e saktë",
-    text: "Nuk dërgojmë kandidatë sa për numra — kërkojmë përputhjen e duhur për të dyja palët.",
+    title: "Perputhje e sakte",
+    text: "Nuk dergojme kandidate sa per numra — kerkojme perputhjen e duhur per te dyja palet.",
   },
   {
     icon: Handshake,
-    title: "Mbështetje deri në fund",
-    text: "Ndihmojmë me intervistën, dokumentacionin dhe fillimin e punës.",
+    title: "Mbeshtetje deri ne fund",
+    text: "Ndihmojme me intervisten, dokumentacionin dhe fillimin e punes.",
   },
 ];
 
@@ -53,9 +53,9 @@ function About() {
         <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
           <h1 className="text-4xl font-extrabold">Rreth Nesh</h1>
           <p className="mt-4 max-w-2xl text-primary-foreground/80">
-            Njoftime Pune është agjenci punësimi me fokus në tregun shqiptar dhe kosovar. Ndërmjetësojmë
-            mes kompanive, agjencive partnere dhe punëkërkuesve, duke e bërë procesin sa më të thjeshtë:
-            pa llogari, pa formularë të gjatë, me komunikim direkt në WhatsApp.
+            Njoftime Pune eshte agjenci punesimi me fokus ne tregun shqiptar dhe kosovar. Ndermjetesojme
+            mes kompanive, agjencive partnere dhe punekerkuesve, duke e bere procesin sa me te thjeshte:
+            pa llogari, pa formulare te gjate, me komunikim direkt ne WhatsApp.
           </p>
         </div>
       </section>
@@ -63,16 +63,16 @@ function About() {
       <section className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-bold">Misioni jonë</h2>
+            <h2 className="text-2xl font-bold">Misioni jone</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Besojmë se gjetja e një pune të rregullt nuk duhet të varet nga njohjet apo nga një CV
-              perfekte. Për këtë arsye e kemi ndërtuar shërbimin tonë mbi një ide të thjeshtë: sa më
-              pak barriera midis kandidatit dhe punëdhënësit. Ju shihni ofertën, plotësoni pesë fusha
-              dhe biseda vazhdon direkt me një person real.
+              Besojme se gjetja e nje pune te rregullt nuk duhet te varet nga njohjet apo nga nje CV
+              perfekte. Per kete arsye e kemi ndertuar sherbimin tone mbi nje ide te thjeshte: sa me
+              pak barriera midis kandidatit dhe punedhenesit. Ju shihni oferten, plotesoni pese fusha
+              dhe biseda vazhdon direkt me nje person real.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Punojmë me kompani në hoteleri, restorante, ndërtim, prodhim, logjistikë dhe shitje me
-              pakicë, si brenda vendit, edhe për pozicione jashtë vendit ku kërkohet dokumentacion i
+              Punojme me kompani ne hoteleri, restorante, ndertim, prodhim, logjistike dhe shitje me
+              pakice, si brenda vendit, edhe per pozicione jashte vendit ku kerkohet dokumentacion i
               rregullt pune.
             </p>
             <Button asChild variant="hero" size="lg" className="mt-6">
@@ -99,14 +99,14 @@ function About() {
 
       <section className="bg-secondary/60 py-14">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold">Për punëdhënësit dhe agjencitë</h2>
+          <h2 className="text-2xl font-bold">Per punedhenesit dhe agjencite</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            Kërkoni staf? Ne e publikojmë pozicionin, filtrojmë kandidatët dhe ju dërgojmë vetëm profile
-            që përputhen me kërkesat. Bashkëpunimi mund të jetë për një pozicion të vetëm ose për
-            rekrutime të vazhdueshme sezonale.
+            Kerkoni staf? Ne e publikojme pozicionin, filtrojme kandidatet dhe ju dergojme vetem profile
+            qe perputhen me kerkesat. Bashkepunimi mund te jete per nje pozicion te vetem ose per
+            rekrutime te vazhdueshme sezonale.
           </p>
           <Button asChild variant="accent" size="lg" className="mt-6">
-            <Link to="/kontakt">Bashkëpunoni me ne</Link>
+            <Link to="/kontakt">Bashkepunoni me ne</Link>
           </Button>
         </div>
       </section>

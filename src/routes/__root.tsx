@@ -20,14 +20,14 @@ function NotFoundComponent() {
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Faqja nuk u gjet</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Faqja që kërkoni nuk ekziston ose është zhvendosur.
+          Faqja qe kerkoni nuk ekziston ose eshte zhvendosur.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Kthehu në kryefaqe
+            Kthehu ne kryefaqe
           </Link>
         </div>
       </div>
@@ -49,7 +49,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           Kjo faqe nuk u hap
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Ndodhi një problem. Provo të rifreskosh faqen ose kthehu në kryefaqe.
+          Ndodhi nje problem. Provo te rifreskosh faqen ose kthehu ne kryefaqe.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -59,7 +59,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Provo përsëri
+            Provo perseri
           </button>
           <a
             href="/"
@@ -78,11 +78,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Njoftime Pune — Agjenci Punësimi në Shqipëri dhe Kosovë" },
+      { title: "Njoftime Pune — Agjenci Punesimi ne Shqiperi dhe Kosove" },
       {
         name: "description",
         content:
-          "Njoftime Pune lidh punëdhënësit me punëkërkues në Shqipëri dhe Kosovë. Apliko pa regjistrim dhe merr përgjigje direkt në WhatsApp.",
+          "Njoftime Pune lidh punedhenesit me punekerkues ne Shqiperi dhe Kosove. Apliko pa regjistrim dhe merr pergjigje direkt ne WhatsApp.",
       },
       { name: "author", content: "Njoftime Pune" },
       { property: "og:type", content: "website" },

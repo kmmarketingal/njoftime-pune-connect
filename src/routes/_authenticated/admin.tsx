@@ -41,10 +41,10 @@ export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
       { title: "Paneli i Administratorit — Njoftime Pune" },
-      { name: "description", content: "Menaxho ofertat e punës: shto, edito, aktivizo ose fshi." },
+      { name: "description", content: "Menaxho ofertat e punes: shto, edito, aktivizo ose fshi." },
       { name: "robots", content: "noindex" },
       { property: "og:title", content: "Paneli i Administratorit — Njoftime Pune" },
-      { property: "og:description", content: "Menaxhimi i ofertave të punës." },
+      { property: "og:description", content: "Menaxhimi i ofertave te punes." },
     ],
   }),
   loader: ({ context }) => context.queryClient.ensureQueryData(allJobsQuery),
@@ -114,13 +114,13 @@ function AdminPage() {
       }
     },
     onSuccess: () => {
-      toast.success(editingId ? "Oferta u përditësua" : "Oferta u shtua");
+      toast.success(editingId ? "Oferta u perditesua" : "Oferta u shtua");
       setOpen(false);
       setEditingId(null);
       setForm(EMPTY_FORM);
       invalidate();
     },
-    onError: (error) => toast.error(error instanceof Error ? error.message : "Ndodhi një gabim"),
+    onError: (error) => toast.error(error instanceof Error ? error.message : "Ndodhi nje gabim"),
   });
 
   const toggleMutation = useMutation({
@@ -132,10 +132,10 @@ function AdminPage() {
       if (error) throw error;
     },
     onSuccess: () => {
-      toast.success("Statusi i ofertës u ndryshua");
+      toast.success("Statusi i ofertes u ndryshua");
       invalidate();
     },
-    onError: (error) => toast.error(error instanceof Error ? error.message : "Ndodhi një gabim"),
+    onError: (error) => toast.error(error instanceof Error ? error.message : "Ndodhi nje gabim"),
   });
 
   const deleteMutation = useMutation({
@@ -148,7 +148,7 @@ function AdminPage() {
       setDeleteTarget(null);
       invalidate();
     },
-    onError: (error) => toast.error(error instanceof Error ? error.message : "Ndodhi një gabim"),
+    onError: (error) => toast.error(error instanceof Error ? error.message : "Ndodhi nje gabim"),
   });
 
   function openCreate() {
@@ -215,14 +215,14 @@ function AdminPage() {
           <h2 className="text-xl font-bold">Menaxhimi i Ofertave</h2>
           <Button variant="hero" onClick={openCreate}>
             <Plus className="h-4 w-4" />
-            Shto ofertë të re
+            Shto oferte te re
           </Button>
         </div>
 
         <div className="mt-4 space-y-3">
           {jobs.length === 0 && (
             <p className="rounded-2xl border border-dashed border-border bg-card p-10 text-center text-muted-foreground">
-              Nuk ka oferta. Kliko “Shto ofertë të re” për të publikuar të parën.
+              Nuk ka oferta. Kliko “Shto oferte te re” per te publikuar te paren.
             </p>
           )}
           {jobs.map((job) => (
@@ -242,7 +242,7 @@ function AdminPage() {
                   )}
                 </div>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  {job.city || "—"} · {job.job_type} · {job.salary ?? "Pa pagë të publikuar"}
+                  {job.city || "—"} · {job.job_type} · {job.salary ?? "Pa page te publikuar"}
                 </p>
                 <p className="mt-0.5 text-xs text-muted-foreground">
                   Publikuar: {formatDate(job.created_at)}
@@ -272,9 +272,9 @@ function AdminPage() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl">
           <DialogHeader>
-            <DialogTitle>{editingId ? "Edito ofertën" : "Shto ofertë të re"}</DialogTitle>
+            <DialogTitle>{editingId ? "Edito oferten" : "Shto oferte te re"}</DialogTitle>
             <DialogDescription>
-              Plotëso të dhënat e pozicionit. Kërkesat shkruaji një në çdo rresht.
+              Ploteso te dhenat e pozicionit. Kerkesat shkruaji nje ne çdo rresht.
             </DialogDescription>
           </DialogHeader>
 
@@ -283,7 +283,7 @@ function AdminPage() {
             onSubmit={(e) => {
               e.preventDefault();
               if (form.title.trim().length < 3) {
-                toast.error("Titulli duhet të ketë minimum 3 karaktere");
+                toast.error("Titulli duhet te kete minimum 3 karaktere");
                 return;
               }
               saveMutation.mutate();
@@ -316,7 +316,7 @@ function AdminPage() {
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Lloji i punës</Label>
+              <Label>Lloji i punes</Label>
               <Select
                 value={form.job_type}
                 onValueChange={(value) => setForm({ ...form, job_type: value })}
@@ -338,12 +338,12 @@ function AdminPage() {
               <Input
                 value={form.salary}
                 onChange={(e) => setForm({ ...form, salary: e.target.value })}
-                placeholder="60.000 - 80.000 Lekë"
+                placeholder="60.000 - 80.000 Leke"
                 maxLength={80}
               />
             </div>
             <div className="space-y-1.5">
-              <Label>Data e skadencës</Label>
+              <Label>Data e skadences</Label>
               <Input
                 type="date"
                 value={form.expires_at}
@@ -366,7 +366,7 @@ function AdminPage() {
               </Select>
             </div>
             <div className="space-y-1.5 sm:col-span-2">
-              <Label>Përshkrimi</Label>
+              <Label>Pershkrimi</Label>
               <Textarea
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
@@ -375,13 +375,13 @@ function AdminPage() {
               />
             </div>
             <div className="space-y-1.5 sm:col-span-2">
-              <Label>Kërkesat (një në çdo rresht)</Label>
+              <Label>Kerkesat (nje ne çdo rresht)</Label>
               <Textarea
                 value={form.requirements}
                 onChange={(e) => setForm({ ...form, requirements: e.target.value })}
                 rows={5}
                 maxLength={2000}
-                placeholder={"Eksperiencë 1 vit\nKomunikim i mirë"}
+                placeholder={"Eksperience 1 vit\nKomunikim i mire"}
               />
             </div>
           </form>
@@ -391,7 +391,7 @@ function AdminPage() {
               Anulo
             </Button>
             <Button type="submit" form="job-form" variant="hero" disabled={saveMutation.isPending}>
-              {saveMutation.isPending ? "Duke ruajtur…" : "Ruaj ofertën"}
+              {saveMutation.isPending ? "Duke ruajtur…" : "Ruaj oferten"}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -401,9 +401,9 @@ function AdminPage() {
       <Dialog open={deleteTarget !== null} onOpenChange={(v) => !v && setDeleteTarget(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Fshi ofertën?</DialogTitle>
+            <DialogTitle>Fshi oferten?</DialogTitle>
             <DialogDescription>
-              “{deleteTarget?.title}” do fshihet përgjithmonë. Ky veprim nuk mund të kthehet.
+              “{deleteTarget?.title}” do fshihet pergjithmone. Ky veprim nuk mund te kthehet.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -415,7 +415,7 @@ function AdminPage() {
               disabled={deleteMutation.isPending}
               onClick={() => deleteTarget && deleteMutation.mutate(deleteTarget.id)}
             >
-              Fshi përfundimisht
+              Fshi perfundimisht
             </Button>
           </DialogFooter>
         </DialogContent>
