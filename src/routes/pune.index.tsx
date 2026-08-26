@@ -9,11 +9,13 @@ import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { activeJobsQuery } from "@/lib/jobs";
+import { ALBANIA_CITIES, KOSOVO_CITIES, activeJobsQuery } from "@/lib/jobs";
 
 export const Route = createFileRoute("/pune/")({
   head: () => ({
