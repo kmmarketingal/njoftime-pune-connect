@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import logoUrl from "@/assets/logo.png";
-import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { WHATSAPP_NUMBER } from "@/lib/jobs";
 
@@ -35,22 +35,13 @@ export function SiteFooter() {
               <MessageCircle className="h-5 w-5" />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/njoftime_per_punetor"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary-foreground/12 transition-colors hover:bg-primary-foreground/25"
             >
               <Instagram className="h-5 w-5" />
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary-foreground/12 transition-colors hover:bg-primary-foreground/25"
-            >
-              <Facebook className="h-5 w-5" />
             </a>
           </div>
         </div>

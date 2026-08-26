@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
@@ -68,11 +68,8 @@ function Contact() {
             </ContactItem>
             <ContactItem icon={Instagram} label="Rrjetet sociale">
               <span className="flex gap-3">
-                <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-primary">
+                <a href="https://www.instagram.com/njoftime_per_punetor" target="_blank" rel="noreferrer" className="hover:text-primary">
                   Instagram
-                </a>
-                <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-primary">
-                  Facebook
                 </a>
               </span>
             </ContactItem>
@@ -94,22 +91,13 @@ function Contact() {
           </Button>
           <div className="mt-4 flex gap-2">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/njoftime_per_punetor"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary-foreground/12 hover:bg-primary-foreground/25"
             >
               <Instagram className="h-5 w-5" />
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-primary-foreground/12 hover:bg-primary-foreground/25"
-            >
-              <Facebook className="h-5 w-5" />
             </a>
           </div>
         </div>
