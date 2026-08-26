@@ -9,11 +9,13 @@ import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { activeJobsQuery } from "@/lib/jobs";
+import { ALBANIA_CITIES, KOSOVO_CITIES, activeJobsQuery } from "@/lib/jobs";
 
 export const Route = createFileRoute("/pune/")({
   head: () => ({
@@ -42,10 +44,11 @@ function JobsPage() {
   const [city, setCity] = useState(ALL);
   const [type, setType] = useState(ALL);
 
-  const cities = useMemo(
-    () => Array.from(new Set(jobs.map((j) => j.city).filter(Boolean))).sort(),
-    [jobs],
-  );
+  const otherCities = useMemo(() => {
+    const known = new Set<string>([...ALBANIA_CITIES, ...KOSOVO_CITIES]);
+    return Array.from(new Set(jobs.map((j) => j.city).filter((c) => c && !known.has(c)))).sort();
+  }, [jobs]);
+
   const types = useMemo(
     () => Array.from(new Set(jobs.map((j) => j.job_type).filter(Boolean))).sort(),
     [jobs],
@@ -78,14 +81,36 @@ function JobsPage() {
               <SelectTrigger aria-label="Filtro sipas qytetit">
                 <SelectValue placeholder="Qyteti" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="max-h-72">
                 <SelectItem value={ALL}>Të gjitha qytetet</SelectItem>
-                {cities.map((c) => (
-                  <SelectItem key={c} value={c}>
-                    {c}
-                  </SelectItem>
-                ))}
+                <SelectGroup>
+                  <SelectLabel>Shqipëri</SelectLabel>
+                  {ALBANIA_CITIES.map((c) => (
+                    <SelectItem key={c} value={c}>
+                      {c}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+                <SelectGroup>
+                  <SelectLabel>Kosovë</SelectLabel>
+                  {KOSOVO_CITIES.map((c) => (
+                    <SelectItem key={c} value={c}>
+                      {c}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+                {otherCities.length > 0 && (
+                  <SelectGroup>
+                    <SelectLabel>Jashtë vendit</SelectLabel>
+                    {otherCities.map((c) => (
+                      <SelectItem key={c} value={c}>
+                        {c}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                )}
               </SelectContent>
+
             </Select>
             <Select value={type} onValueChange={setType}>
               <SelectTrigger aria-label="Filtro sipas llojit të punës">
