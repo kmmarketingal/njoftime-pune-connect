@@ -13,7 +13,7 @@ export const Route = createFileRoute("/rreth-nesh")({
         content:
           "Njoftime Pune eshte agjenci punesimi qe ndermjeteson mes kompanive dhe punekerkuesve ne Shqiperi dhe Kosove, me proces transparent dhe pa pagese per kandidatet.",
       },
-      { property: "og:title", content: "Rreth Nesh — Njoftime Pune" },
+      { property: "og:title", content: "Rreth Nesh — Njoftime Pune, agjenci punesimi" },
       {
         property: "og:description",
         content: "Njihu me agjencine qe ka vendosur mijera punetore ne pune te rregullt.",
@@ -49,65 +49,80 @@ const VALUES = [
 function About() {
   return (
     <SiteShell>
-      <section className="bg-gradient-hero text-primary-foreground">
-        <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
-          <h1 className="text-4xl font-extrabold">Rreth Nesh</h1>
-          <p className="mt-4 max-w-2xl text-primary-foreground/80">
-            Njoftime Pune eshte agjenci punesimi me fokus ne tregun shqiptar dhe kosovar. Ndermjetesojme
-            mes kompanive, agjencive partnere dhe punekerkuesve, duke e bere procesin sa me te thjeshte:
-            pa llogari, pa formulare te gjate, me komunikim direkt ne WhatsApp.
+      <section className="relative overflow-hidden bg-primary text-primary-foreground">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(211,148,36,0.18),transparent_40%)]" />
+        <div className="relative mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Rreth Nesh</p>
+          <h1 className="mt-3 max-w-3xl font-display text-4xl font-normal leading-[1.1] sm:text-5xl">
+            Lidhim njerezit me pune te rregullta
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg text-primary-foreground/80">
+            Njoftime Pune eshte agjenci punesimi me fokus ne tregun shqiptar dhe kosovar.
+            Ndermjetesojme mes kompanive, agjencive partnere dhe punekerkuesve, duke e bere
+            procesin sa me te thjeshte: pa llogari, pa formulare te gjate, me komunikim direkt ne
+            WhatsApp.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
-        <div className="grid gap-8 lg:grid-cols-2">
+      <section className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
+        <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-bold">Misioni jone</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Misioni</p>
+            <h2 className="mt-3 font-display text-3xl font-normal sm:text-4xl">Pune, jo burokraci</h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Besojme se gjetja e nje pune te rregullt nuk duhet te varet nga njohjet apo nga nje CV
               perfekte. Per kete arsye e kemi ndertuar sherbimin tone mbi nje ide te thjeshte: sa me
               pak barriera midis kandidatit dhe punedhenesit. Ju shihni oferten, plotesoni pese fusha
               dhe biseda vazhdon direkt me nje person real.
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
               Punojme me kompani ne hoteleri, restorante, ndertim, prodhim, logjistike dhe shitje me
               pakice, si brenda vendit, edhe per pozicione jashte vendit ku kerkohet dokumentacion i
               rregullt pune.
             </p>
-            <Button asChild variant="hero" size="lg" className="mt-6">
+            <Button asChild variant="hero" size="lg" className="mt-8 rounded-full px-8">
               <Link to="/pune">Shiko ofertat aktive</Link>
             </Button>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {VALUES.map((value) => (
+            {VALUES.map((value, i) => (
               <div
                 key={value.title}
-                className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]"
+                className={`relative rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)] ${
+                  i === 0 || i === 3 ? "sm:translate-y-4" : ""
+                }`}
               >
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary-soft text-primary">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
                   <value.icon className="h-5 w-5" />
                 </span>
-                <h3 className="mt-3 font-bold">{value.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{value.text}</p>
+                <h3 className="mt-4 text-lg font-bold">{value.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{value.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-secondary/60 py-14">
+      <section className="bg-secondary/60 py-16">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <h2 className="text-2xl font-bold">Per punedhenesit dhe agjencite</h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            Kerkoni staf? Ne e publikojme pozicionin, filtrojme kandidatet dhe ju dergojme vetem profile
-            qe perputhen me kerkesat. Bashkepunimi mund te jete per nje pozicion te vetem ose per
-            rekrutime te vazhdueshme sezonale.
-          </p>
-          <Button asChild variant="accent" size="lg" className="mt-6">
-            <Link to="/kontakt">Bashkepunoni me ne</Link>
-          </Button>
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Per kompani
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-normal sm:text-4xl">
+              Puneso staf te perputhshem
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Kerkoni staf? Ne e publikojme pozicionin, filtrojme kandidatet dhe ju dergojme vetem
+              profile qe perputhen me kerkesat. Bashkepunimi mund te jete per nje pozicion te vetem
+              ose per rekrutime te vazhdueshme sezonale.
+            </p>
+            <Button asChild variant="accent" size="lg" className="mt-6 rounded-full px-8">
+              <Link to="/kontakt">Bashkepunoni me ne</Link>
+            </Button>
+          </div>
         </div>
       </section>
     </SiteShell>
