@@ -42,10 +42,11 @@ function JobsPage() {
   const [city, setCity] = useState(ALL);
   const [type, setType] = useState(ALL);
 
-  const cities = useMemo(
-    () => Array.from(new Set(jobs.map((j) => j.city).filter(Boolean))).sort(),
-    [jobs],
-  );
+  const otherCities = useMemo(() => {
+    const known = new Set<string>([...ALBANIA_CITIES, ...KOSOVO_CITIES]);
+    return Array.from(new Set(jobs.map((j) => j.city).filter((c) => c && !known.has(c)))).sort();
+  }, [jobs]);
+
   const types = useMemo(
     () => Array.from(new Set(jobs.map((j) => j.job_type).filter(Boolean))).sort(),
     [jobs],
