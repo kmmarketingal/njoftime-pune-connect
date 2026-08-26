@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Briefcase, Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import logoAsset from "@/assets/logo.png.asset.json";
+import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { WHATSAPP_NUMBER } from "@/lib/jobs";
 

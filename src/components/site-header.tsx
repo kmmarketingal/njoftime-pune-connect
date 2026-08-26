@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, Briefcase, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logoAsset from "@/assets/logo.png.asset.json";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
