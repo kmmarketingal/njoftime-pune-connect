@@ -94,7 +94,7 @@ function Home() {
               Puna e duhur, pa humbur kohe.
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-primary-foreground/80">
-              Apliko dhe merr pergjigje ne WhatsApp.
+              Oferta pune reale ne Shqiperi dhe Kosove. Apliko dhe merr pergjigje ne WhatsApp.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button asChild variant="hero" size="lg">
