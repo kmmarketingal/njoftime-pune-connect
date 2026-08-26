@@ -136,3 +136,92 @@ function JobsPage() {
     </SiteShell>
   );
 }
+
+function CityFilter({
+  value,
+  onChange,
+  otherCities,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  otherCities: string[];
+}) {
+  const [open, setOpen] = useState(false);
+
+  const allLabel = "Të gjitha qytetet";
+  const selectedLabel = value === ALL ? allLabel : value;
+
+  return (
+    <>
+      <Button
+        type="button"
+        variant="outline"
+        aria-label="Filtro sipas qytetit"
+        className="w-full justify-between bg-transparent font-normal"
+        onClick={() => setOpen(true)}
+      >
+        <span className={value === ALL ? "text-muted-foreground" : ""}>{selectedLabel}</span>
+        <span className="text-muted-foreground">▼</span>
+      </Button>
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput placeholder="Kërko qytetin..." />
+        <CommandList className="max-h-[60vh]">
+          <CommandEmpty>Nuk u gjet qytet.</CommandEmpty>
+          <CommandItem
+            value={allLabel}
+            onSelect={() => {
+              onChange(ALL);
+              setOpen(false);
+            }}
+          >
+            {allLabel}
+          </CommandItem>
+          <CommandGroup heading="Shqipëri">
+            {ALBANIA_CITIES.map((c) => (
+              <CommandItem
+                key={c}
+                value={c}
+                onSelect={() => {
+                  onChange(c);
+                  setOpen(false);
+                }}
+              >
+                {c}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+          <CommandGroup heading="Kosovë">
+            {KOSOVO_CITIES.map((c) => (
+              <CommandItem
+                key={c}
+                value={c}
+                onSelect={() => {
+                  onChange(c);
+                  setOpen(false);
+                }}
+              >
+                {c}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+          {otherCities.length > 0 && (
+            <CommandGroup heading="Jashtë vendit">
+              {otherCities.map((c) => (
+                <CommandItem
+                  key={c}
+                  value={c}
+                  onSelect={() => {
+                    onChange(c);
+                    setOpen(false);
+                  }}
+                >
+                  {c}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          )}
+        </CommandList>
+      </CommandDialog>
+    </>
+  );
+}
