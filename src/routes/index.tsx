@@ -11,7 +11,7 @@ import {
   Users,
 } from "lucide-react";
 
-import heroAsset from "@/assets/direction_1_hero-2.png.asset.json";
+import heroAsset from "@/assets/direction_1_hero.png.asset.json";
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Agjensi punesimi qe lidh kompanite me punekerkues ne Shqiperi dhe Kosove. Shiko ofertat aktive dhe apliko direkt ne WhatsApp, pa regjistrim.",
+          "Agjenci punesimi qe lidh kompanite me punekerkues ne Shqiperi dhe Kosove. Shiko ofertat aktive dhe apliko direkt ne WhatsApp, pa regjistrim.",
       },
       { property: "og:title", content: "Njoftime Pune — Oferta pune ne Shqiperi dhe Kosove" },
       {
@@ -32,8 +32,6 @@ export const Route = createFileRoute("/")({
         content:
           "Oferta pune te verifikuara. Apliko pa regjistrim dhe merr pergjigje direkt ne WhatsApp.",
       },
-      { property: "og:image", content: heroAsset.url },
-      { name: "twitter:image", content: heroAsset.url },
     ],
   }),
   loader: ({ context }) => context.queryClient.ensureQueryData(activeJobsQuery),
@@ -82,6 +80,78 @@ const TESTIMONIALS = [
   },
 ];
 
+function HeroIllustration() {
+  return (
+    <svg
+      viewBox="0 0 420 360"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-full w-full"
+      aria-hidden="true"
+    >
+      <circle cx="320" cy="95" r="52" fill="url(#sun)" />
+      <path
+        d="M280 80 h8 M300 72 h14 M338 68 h10 M355 78 h12"
+        stroke="#D39424"
+        strokeWidth="2"
+        strokeLinecap="round"
+        opacity="0.6"
+      />
+      <path
+        d="M0 330 C120 310 160 250 200 210 C240 170 260 150 300 140 C340 130 380 145 420 150"
+        stroke="#D39424"
+        strokeWidth="3"
+        strokeDasharray="8 6"
+        fill="none"
+        opacity="0.85"
+      />
+      <path
+        d="M180 328 C210 300 230 260 260 235 C290 210 330 200 360 195"
+        stroke="#D39424"
+        strokeWidth="3"
+        fill="none"
+      />
+      <g transform="translate(152, 262)">
+        <circle cx="18" cy="14" r="10" fill="#D39424" />
+        <path
+          d="M18 24 L18 50 M8 36 L28 36 M12 70 L18 50 L24 70"
+          stroke="#F5F0E0"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M24 28 L36 22" stroke="#D39424" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="36" cy="22" r="3" fill="#D39424" />
+      </g>
+      <path
+        d="M310 328 L322 300 H346 L358 328 M330 300 V285 M326 285 H334"
+        stroke="#D39424"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.7"
+      />
+      <path
+        d="M360 328 V295 H380 V328 M370 295 V285 M366 285 H374"
+        stroke="#D39424"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.6"
+      />
+      <circle cx="40" cy="80" r="3" fill="#D39424" opacity="0.5" />
+      <circle cx="72" cy="120" r="2" fill="#D39424" opacity="0.4" />
+      <circle cx="28" cy="180" r="2.5" fill="#D39424" opacity="0.35" />
+      <defs>
+        <radialGradient id="sun" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(320 95) rotate(90) scale(52)">
+          <stop stopColor="#F5D78C" />
+          <stop offset="1" stopColor="#D39424" />
+        </radialGradient>
+      </defs>
+    </svg>
+  );
+}
+
 function Home() {
   const { data: jobs } = useSuspenseQuery(activeJobsQuery);
   const featured = jobs.slice(0, 3);
@@ -90,36 +160,46 @@ function Home() {
     <SiteShell>
       {/* HERO */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(211,148,36,0.14),transparent_50%)]" />
-        <div className="relative mx-auto w-full max-w-6xl px-4 pb-12 pt-8 sm:px-6 lg:pb-16 lg:pt-10">
-          <div className="relative overflow-hidden rounded-2xl shadow-[var(--shadow-lift)]">
-            <img
-              src={heroAsset.url}
-              alt="Njoftime Pune — Puna e duhur, pa humbur kohe"
-              className="h-auto w-full object-cover"
-              loading="eager"
-              decoding="async"
-            />
-            <div className="absolute bottom-4 left-4 rounded-xl border border-primary-foreground/10 bg-card px-4 py-3 text-card-foreground shadow-[var(--shadow-lift)] sm:bottom-6 sm:left-6">
-              <p className="text-xs font-medium text-muted-foreground">Oferta aktive tani</p>
-              <p className="font-display text-2xl font-normal text-primary sm:text-3xl">{jobs.length}</p>
-            </div>
-          </div>
-
-          <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-md text-lg text-primary-foreground/80">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(211,148,36,0.18),transparent_40%)]" />
+        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
+          <div className="max-w-xl animate-fade-up">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Agjenci punesimi
+            </p>
+            <h1 className="mt-4 text-balance-tight font-display text-4xl font-normal leading-[1.05] sm:text-5xl lg:text-6xl">
+              Puna e duhur,{" "}
+              <span className="relative inline-block">
+                pa humbur kohe
+                <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-accent" />
+              </span>
+              .
+            </h1>
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-primary-foreground/80">
               Oferta pune reale ne Shqiperi dhe Kosove. Apliko dhe merr pergjigje ne WhatsApp.
             </p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button asChild variant="hero" size="lg" className="rounded-full px-7">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild variant="hero" size="lg" className="rounded-full px-8">
                 <Link to="/pune">
                   Shiko Ofertat e Punes
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild variant="onDark" size="lg" className="rounded-full px-7">
+              <Button asChild variant="onDark" size="lg" className="rounded-full px-8">
                 <Link to="/kontakt">Kontakto agjencine</Link>
               </Button>
+            </div>
+          </div>
+
+          <div className="relative animate-fade-in">
+            <div className="relative aspect-[4/3] rounded-3xl border border-primary-foreground/10 bg-gradient-to-br from-primary-deep/40 to-transparent p-6 shadow-[var(--shadow-lift)] lg:p-10">
+              <HeroIllustration />
+            </div>
+            <div className="absolute -bottom-4 -left-4 rounded-2xl border border-primary-foreground/10 bg-card px-5 py-4 text-card-foreground shadow-[var(--shadow-lift)]">
+              <p className="text-xs font-medium text-muted-foreground">Oferta aktive tani</p>
+              <p className="font-display text-3xl font-normal text-primary">{jobs.length}</p>
+            </div>
+            <div className="absolute -right-2 top-8 hidden rounded-xl border border-primary-foreground/10 bg-primary-foreground/10 px-4 py-2 text-sm text-primary-foreground backdrop-blur sm:block">
+              Apliko pa regjistrim
             </div>
           </div>
         </div>
