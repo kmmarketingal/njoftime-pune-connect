@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RrethNeshRouteImport } from './routes/rreth-nesh'
 import { Route as PuneIndexRouteImport } from './routes/pune.index'
 import { Route as PuneIdRouteImport } from './routes/pune.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RrethNeshRoute = RrethNeshRouteImport.update({
+  id: '/rreth-nesh',
+  path: '/rreth-nesh',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PuneIndexRoute = PuneIndexRouteImport.update({
@@ -31,30 +37,34 @@ const PuneIdRoute = PuneIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/rreth-nesh': typeof RrethNeshRoute
   '/pune/$id': typeof PuneIdRoute
   '/pune/': typeof PuneIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/rreth-nesh': typeof RrethNeshRoute
   '/pune/$id': typeof PuneIdRoute
   '/pune': typeof PuneIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/rreth-nesh': typeof RrethNeshRoute
   '/pune/$id': typeof PuneIdRoute
   '/pune/': typeof PuneIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/pune/$id' | '/pune/'
+  fullPaths: '/' | '/rreth-nesh' | '/pune/$id' | '/pune/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pune/$id' | '/pune'
-  id: '__root__' | '/' | '/pune/$id' | '/pune/'
+  to: '/' | '/rreth-nesh' | '/pune/$id' | '/pune'
+  id: '__root__' | '/' | '/rreth-nesh' | '/pune/$id' | '/pune/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  RrethNeshRoute: typeof RrethNeshRoute
   PuneIdRoute: typeof PuneIdRoute
   PuneIndexRoute: typeof PuneIndexRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rreth-nesh': {
+      id: '/rreth-nesh'
+      path: '/rreth-nesh'
+      fullPath: '/rreth-nesh'
+      preLoaderRoute: typeof RrethNeshRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pune/': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  RrethNeshRoute: RrethNeshRoute,
   PuneIdRoute: PuneIdRoute,
   PuneIndexRoute: PuneIndexRoute,
 }
