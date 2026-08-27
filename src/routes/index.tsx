@@ -149,10 +149,12 @@ function Home() {
     });
 
     // Nese perputhet vetem nje oferte, hape direkt detajin e ofertes.
-    if (matches.length === 1) {
-      navigate({ to: "/pune/$id", params: { id: matches[0].id } });
+    const only = matches.length === 1 ? matches[0] : undefined;
+    if (only) {
+      navigate({ to: "/pune/$id", params: { id: only.id } });
       return;
     }
+
 
     navigate({ to: "/pune", search: { q: keyword.trim(), type, city } });
   };
