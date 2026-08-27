@@ -40,6 +40,12 @@ import {
 import { ALBANIA_CITIES, KOSOVO_CITIES, activeJobsQuery, WHATSAPP_NUMBER } from "@/lib/jobs";
 
 export const Route = createFileRoute("/pune/")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    q: typeof search.q === "string" ? search.q : "",
+    type: typeof search.type === "string" ? search.type : "",
+    city: typeof search.city === "string" ? search.city : "",
+  }),
+
   head: () => ({
     meta: [
       { title: "Ofertat e Punes — Njoftime Pune" },
