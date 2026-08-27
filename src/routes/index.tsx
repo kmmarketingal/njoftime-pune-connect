@@ -124,6 +124,37 @@ const TESTIMONIALS = [
 function Home() {
   const { data: jobs } = useSuspenseQuery(activeJobsQuery);
   const featured = jobs.slice(0, 3);
+  const navigate = useNavigate();
+
+  const [keyword, setKeyword] = useState("");
+  const [category, setCategory] = useState("__all__");
+  const [location, setLocation] = useState("__all__");
+
+  const runSearch = () => {
+    const term = keyword.trim().toLowerCase();
+    const city = location.startsWith("__") ? "" : location;
+    const type = category === "__all__" ? "" : category;
+
+    const matches = jobs.filter((job) => {
+      const matchesTerm =
+        !term ||
+        job.title.toLowerCase().includes(term) ||
+        job.description.toLowerCase().includes(term) ||
+        (job.company?.toLowerCase().includes(term) ?? false);
+      const matchesCity = !city || job.city === city;
+      const matchesType = !type || job.job_type === type;
+      return matchesTerm && matchesCity && matchesType;
+    });
+
+    // Nese perputhet vetem nje oferte, hape direkt detajin e ofertes.
+    if (matches.length === 1) {
+      navigate({ to: "/pune/$id", params: { id: matches[0].id } });
+      return;
+    }
+
+    navigate({ to: "/pune", search: { q: keyword.trim(), type, city } });
+  };
+
 
   return (
     <SiteShell>
