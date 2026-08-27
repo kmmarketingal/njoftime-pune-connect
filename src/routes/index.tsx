@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 
-import heroMarketingAsset from "@/assets/hero-marketing.png.asset.json";
+import heroMarketingAsset from "@/assets/hero-marketing-v2.png.asset.json";
 import logoAsset from "@/assets/logo.png.asset.json";
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
