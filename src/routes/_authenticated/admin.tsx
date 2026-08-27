@@ -35,7 +35,14 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
-import { allJobsQuery, formatDate, JOB_TYPES, type JobOffer } from "@/lib/jobs";
+import { JobImage } from "@/components/job-image";
+import {
+  allJobsQuery,
+  formatDate,
+  JOB_IMAGES_BUCKET,
+  JOB_TYPES,
+  type JobOffer,
+} from "@/lib/jobs";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
@@ -136,8 +143,10 @@ function AdminPage() {
       setOpen(false);
       setEditingId(null);
       setForm(EMPTY_FORM);
+      setImageFile(null);
       invalidate();
     },
+
     onError: (error) => toast.error(error instanceof Error ? error.message : "Ndodhi nje gabim"),
   });
 
@@ -172,11 +181,13 @@ function AdminPage() {
   function openCreate() {
     setEditingId(null);
     setForm(EMPTY_FORM);
+    setImageFile(null);
     setOpen(true);
   }
 
   function openEdit(job: JobOffer) {
     setEditingId(job.id);
+    setImageFile(null);
     setForm({
       title: job.title,
       company: job.company ?? "",
@@ -187,9 +198,11 @@ function AdminPage() {
       salary: job.salary ?? "",
       expires_at: job.expires_at ?? "",
       is_active: job.is_active,
+      image_path: job.image_path ?? null,
     });
     setOpen(true);
   }
+
 
   async function signOut() {
     await supabase.auth.signOut();
