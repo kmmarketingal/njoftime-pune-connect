@@ -83,12 +83,21 @@ const QUICK_CATEGORIES = [
 
 function JobsPage() {
   const { data: jobs } = useSuspenseQuery(activeJobsQuery);
+  const search = Route.useSearch();
 
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState(search.q);
   const [company, setCompany] = useState("");
   const [country, setCountry] = useState<string>(ALL);
-  const [city, setCity] = useState<string>(ALL);
-  const [type, setType] = useState<string>(ALL);
+  const [city, setCity] = useState<string>(search.city || ALL);
+  const [type, setType] = useState<string>(search.type || ALL);
+
+  // Sinkronizo filtrat kur vjen kerkimi nga faqja kryesore.
+  useEffect(() => {
+    setKeyword(search.q);
+    setCity(search.city || ALL);
+    setType(search.type || ALL);
+  }, [search.q, search.city, search.type]);
+
 
   const otherCities = useMemo(() => {
     const known = new Set<string>([...ALBANIA_CITIES, ...KOSOVO_CITIES]);
