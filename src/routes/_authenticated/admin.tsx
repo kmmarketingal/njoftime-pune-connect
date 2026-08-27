@@ -35,7 +35,14 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
-import { allJobsQuery, formatDate, JOB_TYPES, type JobOffer } from "@/lib/jobs";
+import { JobImage } from "@/components/job-image";
+import {
+  allJobsQuery,
+  formatDate,
+  JOB_IMAGES_BUCKET,
+  JOB_TYPES,
+  type JobOffer,
+} from "@/lib/jobs";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
@@ -62,6 +69,7 @@ type FormState = {
   salary: string;
   expires_at: string;
   is_active: boolean;
+  image_path: string | null;
 };
 
 const EMPTY_FORM: FormState = {
@@ -74,7 +82,9 @@ const EMPTY_FORM: FormState = {
   salary: "",
   expires_at: "",
   is_active: true,
+  image_path: null,
 };
+
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -84,6 +94,7 @@ function AdminPage() {
   const [open, setOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<JobOffer | null>(null);
 
   const activeCount = jobs.filter((j) => j.is_active).length;
@@ -94,6 +105,18 @@ function AdminPage() {
 
   const saveMutation = useMutation({
     mutationFn: async () => {
+      let imagePath = form.image_path;
+
+      if (imageFile) {
+        const ext = imageFile.name.split(".").pop()?.toLowerCase() || "jpg";
+        const path = `${crypto.randomUUID()}.${ext}`;
+        const { error: uploadError } = await supabase.storage
+          .from(JOB_IMAGES_BUCKET)
+          .upload(path, imageFile, { contentType: imageFile.type, upsert: false });
+        if (uploadError) throw uploadError;
+        imagePath = path;
+      }
+
       const payload = {
         title: form.title.trim(),
         company: form.company.trim() || null,
@@ -104,7 +127,9 @@ function AdminPage() {
         salary: form.salary.trim() || null,
         expires_at: form.expires_at || null,
         is_active: form.is_active,
+        image_path: imagePath,
       };
+
       if (editingId) {
         const { error } = await supabase.from("job_offers").update(payload).eq("id", editingId);
         if (error) throw error;
@@ -118,8 +143,10 @@ function AdminPage() {
       setOpen(false);
       setEditingId(null);
       setForm(EMPTY_FORM);
+      setImageFile(null);
       invalidate();
     },
+
     onError: (error) => toast.error(error instanceof Error ? error.message : "Ndodhi nje gabim"),
   });
 
@@ -154,11 +181,13 @@ function AdminPage() {
   function openCreate() {
     setEditingId(null);
     setForm(EMPTY_FORM);
+    setImageFile(null);
     setOpen(true);
   }
 
   function openEdit(job: JobOffer) {
     setEditingId(job.id);
+    setImageFile(null);
     setForm({
       title: job.title,
       company: job.company ?? "",
@@ -169,9 +198,11 @@ function AdminPage() {
       salary: job.salary ?? "",
       expires_at: job.expires_at ?? "",
       is_active: job.is_active,
+      image_path: job.image_path ?? null,
     });
     setOpen(true);
   }
+
 
   async function signOut() {
     await supabase.auth.signOut();
@@ -338,10 +369,48 @@ function AdminPage() {
               <Input
                 value={form.salary}
                 onChange={(e) => setForm({ ...form, salary: e.target.value })}
-                placeholder="60.000 - 80.000 Leke"
+                placeholder="Opsionale — lere bosh nese nuk e publikon"
                 maxLength={80}
               />
+              <p className="text-xs text-muted-foreground">
+                Nese e le bosh, shfaqet “Diskutohet ne interviste”.
+              </p>
             </div>
+            <div className="space-y-1.5 sm:col-span-2">
+              <Label>Foto e ofertes (opsionale)</Label>
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}
+              />
+              <p className="text-xs text-muted-foreground">
+                Maks. 5MB. Nese nuk zgjedh foto, oferta shfaqet normalisht pa foto.
+              </p>
+              {imageFile ? (
+                <p className="text-xs font-medium text-foreground">
+                  Foto e zgjedhur: {imageFile.name}
+                </p>
+              ) : form.image_path ? (
+                <div className="flex items-center gap-3">
+                  <div className="h-16 w-24 overflow-hidden rounded-lg bg-secondary">
+                    <JobImage
+                      path={form.image_path}
+                      alt="Foto e ofertes"
+                      className="h-full w-full"
+                    />
+                  </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setForm({ ...form, image_path: null })}
+                  >
+                    Hiq foton
+                  </Button>
+                </div>
+              ) : null}
+            </div>
+
             <div className="space-y-1.5">
               <Label>Data e skadences</Label>
               <Input

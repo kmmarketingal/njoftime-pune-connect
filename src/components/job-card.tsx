@@ -3,6 +3,7 @@ import { ArrowRight, CalendarDays, Heart, MapPin } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { JobImage } from "@/components/job-image";
 import { formatDate, type JobOffer } from "@/lib/jobs";
 
 function daysRemaining(dateValue: string | null) {
@@ -22,10 +23,17 @@ export function JobCard({ job }: { job: JobOffer }) {
 
   return (
     <div className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-card)] transition-all duration-300 hover:border-accent/40 hover:shadow-[var(--shadow-lift)] sm:flex-row sm:items-center sm:gap-5 sm:p-5">
-      {/* Company logo placeholder */}
-      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary-soft text-lg font-bold text-primary">
-        {companyInitial(job.company)}
-      </div>
+      {/* Foto e ofertes ose inicialja e kompanise */}
+      {job.image_path ? (
+        <div className="h-32 w-full shrink-0 overflow-hidden rounded-xl bg-primary-soft sm:h-20 sm:w-20">
+          <JobImage path={job.image_path} alt={job.title} className="h-full w-full" />
+        </div>
+      ) : (
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary-soft text-lg font-bold text-primary">
+          {companyInitial(job.company)}
+        </div>
+      )}
+
 
       {/* Main content */}
       <div className="min-w-0 flex-1">

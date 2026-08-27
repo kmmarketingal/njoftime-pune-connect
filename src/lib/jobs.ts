@@ -10,11 +10,30 @@ export type JobOffer = {
   city: string;
   salary: string | null;
   company: string | null;
+  image_path: string | null;
   expires_at: string | null;
   is_active: boolean;
   created_at: string;
   updated_at: string;
 };
+
+export const JOB_IMAGES_BUCKET = "job-images";
+
+/** Krijon link te nenshkruar per foton e ofertes (bucket privat). */
+export const jobImageUrlQuery = (path: string | null) =>
+  queryOptions({
+    queryKey: ["job_image", path],
+    staleTime: 1000 * 60 * 30,
+    queryFn: async (): Promise<string | null> => {
+      if (!path) return null;
+      const { data, error } = await supabase.storage
+        .from(JOB_IMAGES_BUCKET)
+        .createSignedUrl(path, 60 * 60 * 24 * 7);
+      if (error) return null;
+      return data?.signedUrl ?? null;
+    },
+  });
+
 
 export const JOB_TYPES = [
   "Kohe e plote",
