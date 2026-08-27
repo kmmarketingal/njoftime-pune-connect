@@ -16,7 +16,7 @@ import {
   X,
 } from "lucide-react";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
@@ -40,6 +40,15 @@ import {
 import { ALBANIA_CITIES, KOSOVO_CITIES, activeJobsQuery, WHATSAPP_NUMBER } from "@/lib/jobs";
 
 export const Route = createFileRoute("/pune/")({
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): { q?: string | undefined; type?: string | undefined; city?: string | undefined } => ({
+    q: typeof search["q"] === "string" ? (search["q"] as string) : undefined,
+    type: typeof search["type"] === "string" ? (search["type"] as string) : undefined,
+    city: typeof search["city"] === "string" ? (search["city"] as string) : undefined,
+  }),
+
+
   head: () => ({
     meta: [
       { title: "Ofertat e Punes — Njoftime Pune" },
@@ -77,12 +86,22 @@ const QUICK_CATEGORIES = [
 
 function JobsPage() {
   const { data: jobs } = useSuspenseQuery(activeJobsQuery);
+  const search = Route.useSearch();
 
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState(search.q ?? "");
   const [company, setCompany] = useState("");
   const [country, setCountry] = useState<string>(ALL);
-  const [city, setCity] = useState<string>(ALL);
-  const [type, setType] = useState<string>(ALL);
+  const [city, setCity] = useState<string>(search.city || ALL);
+  const [type, setType] = useState<string>(search.type || ALL);
+
+  // Sinkronizo filtrat kur vjen kerkimi nga faqja kryesore.
+  useEffect(() => {
+    setKeyword(search.q ?? "");
+    setCity(search.city || ALL);
+    setType(search.type || ALL);
+  }, [search.q, search.city, search.type]);
+
+
 
   const otherCities = useMemo(() => {
     const known = new Set<string>([...ALBANIA_CITIES, ...KOSOVO_CITIES]);

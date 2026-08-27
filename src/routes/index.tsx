@@ -1,5 +1,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+
 import {
   ArrowRight,
   BadgeCheck,
@@ -124,6 +126,39 @@ const TESTIMONIALS = [
 function Home() {
   const { data: jobs } = useSuspenseQuery(activeJobsQuery);
   const featured = jobs.slice(0, 3);
+  const navigate = useNavigate();
+
+  const [keyword, setKeyword] = useState("");
+  const [category, setCategory] = useState("__all__");
+  const [location, setLocation] = useState("__all__");
+
+  const runSearch = () => {
+    const term = keyword.trim().toLowerCase();
+    const city = location.startsWith("__") ? "" : location;
+    const type = category === "__all__" ? "" : category;
+
+    const matches = jobs.filter((job) => {
+      const matchesTerm =
+        !term ||
+        job.title.toLowerCase().includes(term) ||
+        job.description.toLowerCase().includes(term) ||
+        (job.company?.toLowerCase().includes(term) ?? false);
+      const matchesCity = !city || job.city === city;
+      const matchesType = !type || job.job_type === type;
+      return matchesTerm && matchesCity && matchesType;
+    });
+
+    // Nese perputhet vetem nje oferte, hape direkt detajin e ofertes.
+    const only = matches.length === 1 ? matches[0] : undefined;
+    if (only) {
+      navigate({ to: "/pune/$id", params: { id: only.id } });
+      return;
+    }
+
+
+    navigate({ to: "/pune", search: { q: keyword.trim(), type, city } });
+  };
+
 
   return (
     <SiteShell>
@@ -150,11 +185,16 @@ function Home() {
                   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary-foreground/60" />
                   <Input
                     placeholder="Fjale kyce, pozicion, kompani..."
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") runSearch();
+                    }}
                     className="h-12 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 pl-10 text-primary-foreground placeholder:text-primary-foreground/50 focus-visible:ring-accent sm:rounded-full"
                   />
                 </div>
                 <div className="flex-1 sm:max-w-[200px]">
-                  <Select>
+                  <Select value={category} onValueChange={setCategory}>
                     <SelectTrigger className="h-12 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 text-primary-foreground focus:ring-accent sm:rounded-full [&>span]:text-primary-foreground/50">
                       <SelectValue placeholder="Zgjidh kategorine" />
                     </SelectTrigger>
@@ -169,7 +209,7 @@ function Home() {
                   </Select>
                 </div>
                 <div className="flex-1 sm:max-w-[200px]">
-                  <Select>
+                  <Select value={location} onValueChange={setLocation}>
                     <SelectTrigger className="h-12 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 text-primary-foreground focus:ring-accent sm:rounded-full [&>span]:text-primary-foreground/50">
                       <SelectValue placeholder="Vendndodhje" />
                     </SelectTrigger>
@@ -190,9 +230,15 @@ function Home() {
                     </SelectContent>
                   </Select>
                 </div>
-                <Button asChild variant="hero" size="lg" className="h-12 rounded-xl px-7 sm:rounded-full">
-                  <Link to="/pune">Kërko</Link>
+                <Button
+                  variant="hero"
+                  size="lg"
+                  className="h-12 rounded-xl px-7 sm:rounded-full"
+                  onClick={runSearch}
+                >
+                  Kërko
                 </Button>
+
               </div>
             </div>
           </div>
