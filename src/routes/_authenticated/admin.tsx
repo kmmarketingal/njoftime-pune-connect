@@ -87,6 +87,7 @@ function AdminPage() {
   const [open, setOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<JobOffer | null>(null);
 
   const activeCount = jobs.filter((j) => j.is_active).length;
@@ -97,6 +98,18 @@ function AdminPage() {
 
   const saveMutation = useMutation({
     mutationFn: async () => {
+      let imagePath = form.image_path;
+
+      if (imageFile) {
+        const ext = imageFile.name.split(".").pop()?.toLowerCase() || "jpg";
+        const path = `${crypto.randomUUID()}.${ext}`;
+        const { error: uploadError } = await supabase.storage
+          .from(JOB_IMAGES_BUCKET)
+          .upload(path, imageFile, { contentType: imageFile.type, upsert: false });
+        if (uploadError) throw uploadError;
+        imagePath = path;
+      }
+
       const payload = {
         title: form.title.trim(),
         company: form.company.trim() || null,
@@ -107,7 +120,9 @@ function AdminPage() {
         salary: form.salary.trim() || null,
         expires_at: form.expires_at || null,
         is_active: form.is_active,
+        image_path: imagePath,
       };
+
       if (editingId) {
         const { error } = await supabase.from("job_offers").update(payload).eq("id", editingId);
         if (error) throw error;
