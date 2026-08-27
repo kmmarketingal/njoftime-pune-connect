@@ -40,11 +40,14 @@ import {
 import { ALBANIA_CITIES, KOSOVO_CITIES, activeJobsQuery, WHATSAPP_NUMBER } from "@/lib/jobs";
 
 export const Route = createFileRoute("/pune/")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    q: typeof search.q === "string" ? search.q : "",
-    type: typeof search.type === "string" ? search.type : "",
-    city: typeof search.city === "string" ? search.city : "",
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): { q?: string; type?: string; city?: string } => ({
+    q: typeof search["q"] === "string" ? (search["q"] as string) : undefined,
+    type: typeof search["type"] === "string" ? (search["type"] as string) : undefined,
+    city: typeof search["city"] === "string" ? (search["city"] as string) : undefined,
   }),
+
 
   head: () => ({
     meta: [
