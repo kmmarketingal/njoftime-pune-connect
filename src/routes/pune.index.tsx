@@ -109,8 +109,9 @@ function JobsPage() {
 
       const matchesCountry =
         country === ALL ||
-        (country === ALBANIA && ALBANIA_CITIES.includes(job.city as string)) ||
-        (country === KOSOVO && KOSOVO_CITIES.includes(job.city as string));
+        (country === ALBANIA && ALBANIA_CITIES.some((c) => c === job.city)) ||
+        (country === KOSOVO && KOSOVO_CITIES.some((c) => c === job.city));
+
 
 
       const matchesCity = city === ALL || job.city === city;
