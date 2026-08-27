@@ -42,7 +42,7 @@ import { ALBANIA_CITIES, KOSOVO_CITIES, activeJobsQuery, WHATSAPP_NUMBER } from 
 export const Route = createFileRoute("/pune/")({
   validateSearch: (
     search: Record<string, unknown>,
-  ): { q?: string; type?: string; city?: string } => ({
+  ): { q?: string | undefined; type?: string | undefined; city?: string | undefined } => ({
     q: typeof search["q"] === "string" ? (search["q"] as string) : undefined,
     type: typeof search["type"] === "string" ? (search["type"] as string) : undefined,
     city: typeof search["city"] === "string" ? (search["city"] as string) : undefined,
