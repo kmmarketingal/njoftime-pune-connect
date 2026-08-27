@@ -62,6 +62,7 @@ type FormState = {
   salary: string;
   expires_at: string;
   is_active: boolean;
+  image_path: string | null;
 };
 
 const EMPTY_FORM: FormState = {
@@ -74,7 +75,9 @@ const EMPTY_FORM: FormState = {
   salary: "",
   expires_at: "",
   is_active: true,
+  image_path: null,
 };
+
 
 function AdminPage() {
   const navigate = useNavigate();
