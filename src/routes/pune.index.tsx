@@ -16,7 +16,7 @@ import {
   X,
 } from "lucide-react";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
