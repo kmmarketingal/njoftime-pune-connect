@@ -3,19 +3,38 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   BadgeCheck,
+  Briefcase,
   Building2,
+  CalendarDays,
+  CheckCircle2,
+  Clock,
+  Globe,
+  GraduationCap,
+  Home as HomeIcon,
+  Mail,
   MessageCircle,
-  Quote,
+  Phone,
   Search,
   Send,
   Users,
+  Utensils,
 } from "lucide-react";
 
-import heroAsset from "@/assets/direction_1_hero-3.png.asset.json";
+
+import logoAsset from "@/assets/logo.png.asset.json";
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
-import { activeJobsQuery } from "@/lib/jobs";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { activeJobsQuery, ALBANIA_CITIES, KOSOVO_CITIES, WHATSAPP_NUMBER } from "@/lib/jobs";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,6 +61,27 @@ const STATS = [
   { icon: BadgeCheck, value: "1.200+", label: "Pune te plotesuara" },
   { icon: Users, value: "3.500+", label: "Punetore te vendosur" },
   { icon: Building2, value: "180+", label: "Partnere & kompani" },
+];
+
+const QUICK_CATEGORIES = [
+  { icon: Clock, label: "Pune part-time" },
+  { icon: HomeIcon, label: "Pune nga shtepia" },
+
+  { icon: Building2, label: "Kompanite" },
+  { icon: Users, label: "Pa eksperience" },
+  { icon: CalendarDays, label: "Punet e dites" },
+  { icon: Globe, label: "Pune jashte vendit" },
+  { icon: Utensils, label: "HOREKA" },
+  { icon: GraduationCap, label: "Internship" },
+];
+
+const PROMO_BENEFITS = [
+  "Pune te verifikuara",
+  "Njoftime te perditesuara",
+  "Publikim i lehte",
+  "Njoftime te besueshme",
+  "Njoftime sipas profilit",
+  "Dhe me shume...",
 ];
 
 const STEPS = [
@@ -80,59 +120,155 @@ const TESTIMONIALS = [
   },
 ];
 
-
 function Home() {
   const { data: jobs } = useSuspenseQuery(activeJobsQuery);
   const featured = jobs.slice(0, 3);
 
   return (
     <SiteShell>
-      {/* HERO */}
+      {/* HERO SEARCH */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(211,148,36,0.18),transparent_40%)]" />
-        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
-          <div className="max-w-xl animate-fade-up">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-              Agjenci punesimi
-            </p>
-            <h1 className="mt-4 text-balance-tight font-display text-4xl font-normal leading-[1.05] sm:text-5xl lg:text-6xl">
-              Puna e duhur,{" "}
-              <span className="relative inline-block">
-                pa humbur kohe
-                <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-accent" />
-              </span>
-              .
+        <div className="relative mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:py-20">
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="text-balance-tight font-display text-3xl font-normal leading-[1.1] sm:text-4xl lg:text-5xl">
+              Gjej punen e duhur, pa humbur kohe
             </h1>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-primary-foreground/80">
+            <p className="mx-auto mt-4 max-w-2xl text-base text-primary-foreground/80 sm:text-lg">
               Oferta pune reale ne Shqiperi dhe Kosove. Apliko dhe merr pergjigje ne WhatsApp.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild variant="hero" size="lg" className="rounded-full px-8">
-                <Link to="/pune">
-                  Shiko Ofertat e Punes
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild variant="onDark" size="lg" className="rounded-full px-8">
-                <Link to="/kontakt">Kontakto agjencine</Link>
-              </Button>
+
+            {/* Search bar */}
+            <div className="mt-8 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/10 p-2 backdrop-blur-sm sm:rounded-full">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary-foreground/60" />
+                  <Input
+                    placeholder="Fjale kyce, pozicion, kompani..."
+                    className="h-12 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 pl-10 text-primary-foreground placeholder:text-primary-foreground/50 focus-visible:ring-accent sm:rounded-full"
+                  />
+                </div>
+                <div className="flex-1 sm:max-w-[200px]">
+                  <Select>
+                    <SelectTrigger className="h-12 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 text-primary-foreground focus:ring-accent sm:rounded-full [&>span]:text-primary-foreground/50">
+                      <SelectValue placeholder="Zgjidh kategorine" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="__all__">Te gjitha kategorite</SelectItem>
+                      <SelectItem value="Kohe e plote">Kohe e plote</SelectItem>
+                      <SelectItem value="Kohe e pjesshme">Kohe e pjesshme</SelectItem>
+                      <SelectItem value="Sezonale">Sezonale</SelectItem>
+                      <SelectItem value="Praktike">Internship</SelectItem>
+                      <SelectItem value="Jashte vendit">Jashte vendit</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="flex-1 sm:max-w-[200px]">
+                  <Select>
+                    <SelectTrigger className="h-12 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 text-primary-foreground focus:ring-accent sm:rounded-full [&>span]:text-primary-foreground/50">
+                      <SelectValue placeholder="Vendndodhje" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="__all__">Te gjitha qytetet</SelectItem>
+                      <SelectItem value="__albania__">Shqiperi</SelectItem>
+                      {ALBANIA_CITIES.map((c) => (
+                        <SelectItem key={c} value={c}>
+                          {c}
+                        </SelectItem>
+                      ))}
+                      <SelectItem value="__kosovo__">Kosove</SelectItem>
+                      {KOSOVO_CITIES.map((c) => (
+                        <SelectItem key={c} value={c}>
+                          {c}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <Button asChild variant="hero" size="lg" className="h-12 rounded-xl px-7 sm:rounded-full">
+                  <Link to="/pune">Kërko</Link>
+                </Button>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="relative animate-fade-in">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-3xl border border-primary-foreground/10 shadow-[var(--shadow-lift)]">
-              <img
-                src={heroAsset.url}
-                alt="Njoftime Pune - Gjej punen tende"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-4 -left-4 rounded-2xl border border-primary-foreground/10 bg-card px-5 py-4 text-card-foreground shadow-[var(--shadow-lift)]">
-              <p className="text-xs font-medium text-muted-foreground">Oferta aktive tani</p>
-              <p className="font-display text-3xl font-normal text-primary">{jobs.length}</p>
-            </div>
-            <div className="absolute -right-2 top-8 hidden rounded-xl border border-primary-foreground/10 bg-primary-foreground/10 px-4 py-2 text-sm text-primary-foreground backdrop-blur sm:block">
-              Apliko pa regjistrim
+      {/* QUICK CATEGORIES */}
+      <section className="border-b border-border bg-background">
+        <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+            {QUICK_CATEGORIES.map((cat) => (
+              <Link
+                key={cat.label}
+                to="/pune"
+                className="group flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2.5 text-sm font-medium text-foreground shadow-[var(--shadow-card)] transition-all hover:border-accent/40 hover:bg-primary-soft hover:text-primary"
+              >
+                <cat.icon className="h-4 w-4 shrink-0 text-accent transition-colors group-hover:text-primary" />
+                <span className="truncate">{cat.label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROMO BANNER */}
+      <section className="bg-background pb-6 pt-2">
+        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+          <p className="mb-1 text-xs text-muted-foreground">Reklame</p>
+          <div className="relative overflow-hidden rounded-2xl bg-primary px-6 py-8 text-primary-foreground shadow-[var(--shadow-lift)] sm:px-10 lg:py-10">
+            <div className="pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 right-20 h-48 w-48 rounded-full bg-accent/10 blur-3xl" />
+            <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto_1fr]">
+              <div className="flex items-center gap-4">
+                <img
+                  src={logoAsset.url}
+                  alt="Logo Njoftime Pune"
+                  width={64}
+                  height={64}
+                  className="h-16 w-16 rounded-2xl bg-primary-foreground object-contain p-1"
+                />
+                <div>
+                  <p className="font-sans text-lg font-bold">NJOFTIME PUNE</p>
+                  <p className="text-xs uppercase tracking-wider text-primary-foreground/70">
+                    Gjej punen tende
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                {PROMO_BENEFITS.map((b) => (
+                  <span key={b} className="inline-flex items-center gap-2 text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-accent" />
+                    {b}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-col items-start gap-3 lg:items-end">
+                <p className="text-sm font-semibold text-accent">Gjej punen tende!</p>
+                <Button
+                  asChild
+                  variant="hero"
+                  size="lg"
+                  className="rounded-full px-7"
+                >
+                  <Link to="/pune">
+                    KLIKO KETU
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <div className="flex flex-col gap-1 text-xs text-primary-foreground/70">
+                  <a href="mailto:info@njoftimepune.al" className="inline-flex items-center gap-1.5 hover:text-primary-foreground">
+                    <Mail className="h-3.5 w-3.5" />
+                    info@njoftimepune.al
+                  </a>
+                  <a href="tel:+355689504445" className="inline-flex items-center gap-1.5 hover:text-primary-foreground">
+                    <Phone className="h-3.5 w-3.5" />
+                    +355 68 950 4445
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -188,7 +324,7 @@ function Home() {
             Se shpejti do publikohen oferta te reja. Shkruani ne WhatsApp per t'u njoftuar te paret.
           </p>
         ) : (
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5">
             {featured.map((job) => (
               <JobCard key={job.id} job={job} />
             ))}
@@ -241,14 +377,12 @@ function Home() {
           Pervoja reale nga kandidate te vendosur
         </h2>
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {TESTIMONIALS.map((item, i) => (
+          {TESTIMONIALS.map((item) => (
             <figure
               key={item.name}
-              className={`relative flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-[var(--shadow-card)] ${
-                i === 0 ? "md:row-span-2 lg:row-span-1" : ""
-              }`}
+              className="relative flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-[var(--shadow-card)]"
             >
-              <Quote className="h-8 w-8 text-accent/60" />
+              <Briefcase className="h-8 w-8 text-accent/60" />
               <blockquote className="mt-4 flex-1 text-base leading-relaxed text-foreground/90">
                 “{item.text}”
               </blockquote>

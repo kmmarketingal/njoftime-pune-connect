@@ -1,63 +1,83 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Banknote, Briefcase, CalendarDays, MapPin } from "lucide-react";
+import { ArrowRight, CalendarDays, Heart, MapPin } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { formatDate, type JobOffer } from "@/lib/jobs";
 
-export function JobCard({ job }: { job: JobOffer }) {
-  return (
-    <Link
-      to="/pune/$id"
-      params={{ id: job.id }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[var(--shadow-lift)]"
-    >
-      <div className="absolute right-0 top-0 h-16 w-16 translate-x-8 translate-y-[-50%] rounded-full bg-accent/10 transition-transform group-hover:translate-x-6 group-hover:translate-y-[-40%]" />
+function daysRemaining(dateValue: string | null) {
+  if (!dateValue) return null;
+  const end = new Date(dateValue);
+  if (Number.isNaN(end.getTime())) return null;
+  const diff = Math.ceil((end.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+  return diff > 0 ? diff : 0;
+}
 
-      <div className="flex flex-wrap items-center gap-2">
-        <Badge className="rounded-full bg-primary-soft px-3 py-1 text-xs text-secondary-foreground hover:bg-primary-soft">
-          {job.job_type}
-        </Badge>
-        {job.salary ? (
-          <Badge className="rounded-full bg-accent/15 px-3 py-1 text-xs text-accent-foreground hover:bg-accent/15">
-            <span className="text-accent">{job.salary}</span>
-          </Badge>
-        ) : null}
+function companyInitial(company: string | null) {
+  return (company || "?").charAt(0).toUpperCase();
+}
+
+export function JobCard({ job }: { job: JobOffer }) {
+  const remaining = daysRemaining(job.expires_at);
+
+  return (
+    <div className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-card)] transition-all duration-300 hover:border-accent/40 hover:shadow-[var(--shadow-lift)] sm:flex-row sm:items-center sm:gap-5 sm:p-5">
+      {/* Company logo placeholder */}
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary-soft text-lg font-bold text-primary">
+        {companyInitial(job.company)}
       </div>
 
-      <h3 className="mt-4 text-xl font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
-        {job.title}
-      </h3>
-      {job.company ? (
-        <p className="mt-1 text-sm font-medium text-muted-foreground">{job.company}</p>
-      ) : null}
+      {/* Main content */}
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge className="rounded-full bg-primary-soft px-3 py-1 text-xs text-secondary-foreground hover:bg-primary-soft">
+            {job.job_type}
+          </Badge>
+          {job.salary ? (
+            <Badge className="rounded-full bg-accent/15 px-3 py-1 text-xs text-accent-foreground hover:bg-accent/15">
+              <span className="text-accent">{job.salary}</span>
+            </Badge>
+          ) : null}
+        </div>
 
-      <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-        {job.description}
-      </p>
+        <h3 className="mt-2 text-lg font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
+          {job.title}
+        </h3>
+        {job.company ? (
+          <p className="text-sm font-medium text-muted-foreground">{job.company}</p>
+        ) : null}
 
-      <dl className="mt-5 grid gap-2.5 text-sm text-muted-foreground">
-        <div className="flex items-center gap-2">
-          <MapPin className="h-4 w-4 text-accent" />
-          <dd>{job.city || "Sipas marreveshjes"}</dd>
+        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5">
+            <MapPin className="h-4 w-4 text-accent" />
+            {job.city || "Sipas marreveshjes"}
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <CalendarDays className="h-4 w-4 text-accent" />
+            {formatDate(job.created_at)}
+          </span>
+          {remaining !== null && remaining > 0 && (
+            <span className="text-xs font-medium text-whatsapp">edhe {remaining} dite</span>
+          )}
         </div>
-        <div className="flex items-center gap-2">
-          <Briefcase className="h-4 w-4 text-accent" />
-          <dd>{job.job_type}</dd>
-        </div>
-        <div className="flex items-center gap-2">
-          <Banknote className="h-4 w-4 text-accent" />
-          <dd>{job.salary ?? "Diskutohet ne interviste"}</dd>
-        </div>
-        <div className="flex items-center gap-2">
-          <CalendarDays className="h-4 w-4 text-accent" />
-          <dd>Publikuar: {formatDate(job.created_at)}</dd>
-        </div>
-      </dl>
+      </div>
 
-      <span className="mt-auto pt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
-        Shiko detajet & apliko
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-      </span>
-    </Link>
+      {/* Actions */}
+      <div className="flex shrink-0 items-center gap-2 sm:flex-col sm:items-end md:flex-row md:items-center">
+        <button
+          type="button"
+          aria-label="Ruaj oferten"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent/10 hover:text-accent"
+        >
+          <Heart className="h-5 w-5" />
+        </button>
+        <Button asChild variant="hero" size="sm" className="rounded-full px-5">
+          <Link to="/pune/$id" params={{ id: job.id }}>
+            Me shume
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </Button>
+      </div>
+    </div>
   );
 }
