@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { ApplyForm } from "@/components/apply-form";
+import { JobImage } from "@/components/job-image";
 import { SiteShell } from "@/components/site-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -122,7 +123,13 @@ function JobDetail() {
 
       <section className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[1.4fr_1fr]">
         <div>
+          {job.image_path ? (
+            <div className="mb-6 overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-card)]">
+              <JobImage path={job.image_path} alt={job.title} className="max-h-96 w-full" />
+            </div>
+          ) : null}
           <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
+
             <h2 className="text-xl font-bold">Pershkrimi i pozicionit</h2>
             <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
               {job.description.split("\n").filter(Boolean).map((para, i) => (
