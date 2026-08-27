@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 
+import heroMarketingAsset from "@/assets/hero-marketing.png.asset.json";
 import logoAsset from "@/assets/logo.png.asset.json";
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
@@ -128,7 +129,11 @@ function Home() {
     <SiteShell>
       {/* HERO SEARCH */}
       <section className="relative overflow-hidden bg-primary text-primary-foreground">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(211,148,36,0.18),transparent_40%)]" />
+        <div
+          className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroMarketingAsset.url})` }}
+        />
+        <div className="pointer-events-none absolute inset-0 bg-primary/80" />
         <div className="relative mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:py-20">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-balance-tight font-display text-3xl font-normal leading-[1.1] sm:text-4xl lg:text-5xl">
