@@ -22,6 +22,7 @@ export type Database = {
           description: string
           expires_at: string | null
           id: string
+          image_path: string | null
           is_active: boolean
           job_type: string
           requirements: string
@@ -36,6 +37,7 @@ export type Database = {
           description?: string
           expires_at?: string | null
           id?: string
+          image_path?: string | null
           is_active?: boolean
           job_type?: string
           requirements?: string
@@ -50,6 +52,7 @@ export type Database = {
           description?: string
           expires_at?: string | null
           id?: string
+          image_path?: string | null
           is_active?: boolean
           job_type?: string
           requirements?: string
