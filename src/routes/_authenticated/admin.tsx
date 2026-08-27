@@ -369,10 +369,48 @@ function AdminPage() {
               <Input
                 value={form.salary}
                 onChange={(e) => setForm({ ...form, salary: e.target.value })}
-                placeholder="60.000 - 80.000 Leke"
+                placeholder="Opsionale — lere bosh nese nuk e publikon"
                 maxLength={80}
               />
+              <p className="text-xs text-muted-foreground">
+                Nese e le bosh, shfaqet “Diskutohet ne interviste”.
+              </p>
             </div>
+            <div className="space-y-1.5 sm:col-span-2">
+              <Label>Foto e ofertes (opsionale)</Label>
+              <Input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}
+              />
+              <p className="text-xs text-muted-foreground">
+                Maks. 5MB. Nese nuk zgjedh foto, oferta shfaqet normalisht pa foto.
+              </p>
+              {imageFile ? (
+                <p className="text-xs font-medium text-foreground">
+                  Foto e zgjedhur: {imageFile.name}
+                </p>
+              ) : form.image_path ? (
+                <div className="flex items-center gap-3">
+                  <div className="h-16 w-24 overflow-hidden rounded-lg bg-secondary">
+                    <JobImage
+                      path={form.image_path}
+                      alt="Foto e ofertes"
+                      className="h-full w-full"
+                    />
+                  </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setForm({ ...form, image_path: null })}
+                  >
+                    Hiq foton
+                  </Button>
+                </div>
+              ) : null}
+            </div>
+
             <div className="space-y-1.5">
               <Label>Data e skadences</Label>
               <Input
