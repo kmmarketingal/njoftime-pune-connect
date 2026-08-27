@@ -309,17 +309,17 @@ function JobsPage() {
 
           {/* RIGHT SIDEBAR */}
           <aside className="space-y-4">
-            {/* Login CTA */}
+            {/* Admin panel */}
             <div className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
-              <h3 className="text-center text-base font-bold">Identifikohu</h3>
-              <div className="mt-4 space-y-3">
-                <Input type="email" placeholder="Adresa Email" />
-                <Input type="password" placeholder="Fjalekalimi" />
-                <Button asChild variant="hero" className="w-full rounded-full">
-                  <Link to="/auth">Identifikohu</Link>
-                </Button>
-              </div>
+              <h3 className="text-center text-base font-bold">Paneli Admin</h3>
+              <p className="mt-1.5 text-center text-xs text-muted-foreground">
+                Vetem per administratoret e ofertave.
+              </p>
+              <Button asChild variant="outline" className="mt-4 w-full rounded-full">
+                <Link to="/admin">Paneli Admin</Link>
+              </Button>
             </div>
+
 
             {/* WhatsApp CTA */}
             <div className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">

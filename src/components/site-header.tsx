@@ -53,8 +53,9 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-2 lg:flex">
           <Button asChild variant="outline" className="rounded-full px-5">
-            <Link to="/auth">Identifikohu</Link>
+            <Link to="/admin">Paneli Admin</Link>
           </Button>
+
           <Button asChild variant="hero" className="rounded-full px-5">
             <Link to="/pune">Shiko Ofertat</Link>
           </Button>
@@ -88,8 +89,9 @@ export function SiteHeader() {
             ))}
             <div className="mt-2 flex flex-col gap-2">
               <Button asChild variant="outline" className="w-full rounded-full">
-                <Link to="/auth">Identifikohu</Link>
+                <Link to="/admin">Paneli Admin</Link>
               </Button>
+
               <Button asChild variant="hero" className="w-full rounded-full">
                 <Link to="/pune">Shiko Ofertat</Link>
               </Button>
