@@ -88,7 +88,7 @@ function JobsPage() {
   const { data: jobs } = useSuspenseQuery(activeJobsQuery);
   const search = Route.useSearch();
 
-  const [keyword, setKeyword] = useState(search.q);
+  const [keyword, setKeyword] = useState(search.q ?? "");
   const [company, setCompany] = useState("");
   const [country, setCountry] = useState<string>(ALL);
   const [city, setCity] = useState<string>(search.city || ALL);
@@ -96,10 +96,11 @@ function JobsPage() {
 
   // Sinkronizo filtrat kur vjen kerkimi nga faqja kryesore.
   useEffect(() => {
-    setKeyword(search.q);
+    setKeyword(search.q ?? "");
     setCity(search.city || ALL);
     setType(search.type || ALL);
   }, [search.q, search.city, search.type]);
+
 
 
   const otherCities = useMemo(() => {
