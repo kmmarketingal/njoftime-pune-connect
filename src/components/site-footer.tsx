@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import footerBgAsset from "@/assets/footer-bg.png.asset.json";
 import logoAsset from "@/assets/logo.png.asset.json";
 import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
