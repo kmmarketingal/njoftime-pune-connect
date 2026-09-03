@@ -318,7 +318,7 @@ function JobsPage() {
                 </Button>
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {filtered.map((job) => (
                   <JobCard key={job.id} job={job} />
                 ))}

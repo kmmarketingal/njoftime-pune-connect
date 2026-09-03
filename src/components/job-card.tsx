@@ -1,5 +1,5 @@
-import { Link } from "@tanstack/react-router";
-import { CalendarDays, Heart, MapPin } from "lucide-react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { ArrowRight, CalendarDays, Heart, MapPin } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,35 +19,53 @@ function companyInitial(company: string | null) {
 }
 
 export function JobCard({ job }: { job: JobOffer }) {
+  const navigate = useNavigate();
   const remaining = daysRemaining(job.expires_at);
 
+  const openDetail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigate({ to: "/pune/$id", params: { id: job.id } });
+  };
+
   return (
-    <div className="group relative flex items-start gap-3 border border-border bg-card p-3 transition-colors duration-200 hover:border-primary/30 hover:bg-accent/10 sm:items-center sm:gap-4">
+    <div className="group relative flex flex-col gap-4 border border-border bg-card p-4 shadow-[var(--shadow-card)] transition-all duration-200 hover:border-primary/30 hover:shadow-[var(--shadow-lift)] sm:flex-row sm:items-center sm:gap-5 sm:p-5">
+      {/* Zona e klikueshme e tere karteses */}
+      <Link
+        to="/pune/$id"
+        params={{ id: job.id }}
+        className="absolute inset-0 z-0"
+        aria-label={`Shiko oferten ${job.title}`}
+      >
+        <span className="sr-only">Shiko oferten</span>
+      </Link>
+
       {/* Logo / foto e ofertes */}
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden border border-border bg-muted sm:h-14 sm:w-14">
+      <div className="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden border border-border bg-muted sm:h-20 sm:w-20">
+        <span className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-primary">
+          {companyInitial(job.company)}
+        </span>
         {job.image_path ? (
-          <JobImage path={job.image_path} alt={job.title} className="h-full w-full" />
-        ) : (
-          <span className="text-lg font-bold text-primary">{companyInitial(job.company)}</span>
-        )}
+          <JobImage path={job.image_path} alt={job.title} className="relative z-10 h-full w-full" />
+        ) : null}
       </div>
 
       {/* Titulli / kompania / kategoria */}
-      <div className="min-w-0 flex-1 pr-8 sm:pr-0">
-        <h3 className="text-base font-bold leading-snug text-foreground transition-colors group-hover:text-primary sm:text-lg">
-          <Link to="/pune/$id" params={{ id: job.id }}>
-            {job.title}
-          </Link>
+      <div className="relative z-10 min-w-0 flex-1">
+        <h3 className="font-display text-xl font-normal leading-snug text-foreground transition-colors group-hover:text-primary sm:text-2xl">
+          {job.title}
         </h3>
         {job.company ? (
-          <p className="truncate text-sm font-medium text-muted-foreground">{job.company}</p>
+          <p className="mt-1 truncate text-sm font-medium text-muted-foreground sm:text-base">
+            {job.company}
+          </p>
         ) : null}
-        <div className="mt-2 flex flex-wrap items-center gap-2">
-          <Badge className="rounded-md bg-card px-2.5 py-0.5 text-xs font-medium text-foreground hover:bg-card">
+        <div className="mt-3 flex flex-wrap items-center gap-2">
+          <Badge className="rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-foreground hover:bg-card">
             {job.job_type}
           </Badge>
           {job.salary ? (
-            <Badge className="rounded-md bg-card px-2.5 py-0.5 text-xs font-medium text-primary hover:bg-card">
+            <Badge className="rounded-full border border-primary/20 bg-primary-soft px-3 py-1 text-xs font-semibold text-primary hover:bg-card">
               {job.salary}
             </Badge>
           ) : null}
@@ -55,7 +73,7 @@ export function JobCard({ job }: { job: JobOffer }) {
       </div>
 
       {/* Info: vendndodhje / data / afati */}
-      <div className="hidden w-44 shrink-0 flex-col gap-1 text-sm text-muted-foreground sm:flex">
+      <div className="relative z-10 flex shrink-0 flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground sm:w-44 sm:flex-col sm:items-start sm:gap-2">
         <span className="inline-flex items-center gap-1.5">
           <MapPin className="h-4 w-4 text-primary" />
           {job.city || "Sipas marreveshjes"}
@@ -70,22 +88,30 @@ export function JobCard({ job }: { job: JobOffer }) {
       </div>
 
       {/* Aksionet */}
-      <div className="flex shrink-0 items-center gap-2 self-end sm:self-center">
-        <Button asChild variant="hero" size="sm" className="rounded-none px-3">
-          <Link to="/pune/$id" params={{ id: job.id }}>
-            Me shume
-          </Link>
+      <div className="relative z-10 flex shrink-0 items-center gap-2 sm:flex-col sm:items-stretch">
+        <Button
+          type="button"
+          variant="hero"
+          size="sm"
+          className="h-10 flex-1 rounded-lg px-5 text-sm sm:flex-initial"
+          onClick={openDetail}
+        >
+          Me shume
+          <ArrowRight className="h-4 w-4" />
         </Button>
       </div>
 
       <button
         type="button"
         aria-label="Ruaj oferten"
-        className="absolute right-2 top-2 inline-flex h-8 w-8 items-center justify-center text-muted-foreground transition-colors hover:text-primary"
+        className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:border-primary/30 hover:text-primary"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
       >
         <Heart className="h-4 w-4" />
       </button>
-
     </div>
   );
 }
