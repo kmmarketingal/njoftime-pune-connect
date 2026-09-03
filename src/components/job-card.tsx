@@ -22,9 +22,9 @@ export function JobCard({ job }: { job: JobOffer }) {
   const remaining = daysRemaining(job.expires_at);
 
   return (
-    <div className="group relative flex items-start gap-4 rounded-xl bg-accent/15 p-4 transition-colors duration-200 hover:bg-accent/25 sm:items-center sm:gap-5">
+    <div className="group relative flex items-start gap-3 border border-border bg-card p-3 transition-colors duration-200 hover:border-primary/30 hover:bg-accent/10 sm:items-center sm:gap-4">
       {/* Logo / foto e ofertes */}
-      <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full bg-card sm:h-16 sm:w-16">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden border border-border bg-muted sm:h-14 sm:w-14">
         {job.image_path ? (
           <JobImage path={job.image_path} alt={job.title} className="h-full w-full" />
         ) : (
@@ -71,7 +71,7 @@ export function JobCard({ job }: { job: JobOffer }) {
 
       {/* Aksionet */}
       <div className="flex shrink-0 items-center gap-2 self-end sm:self-center">
-        <Button asChild variant="hero" size="sm" className="rounded-md px-4">
+        <Button asChild variant="hero" size="sm" className="rounded-none px-3">
           <Link to="/pune/$id" params={{ id: job.id }}>
             Me shume
           </Link>
@@ -81,7 +81,7 @@ export function JobCard({ job }: { job: JobOffer }) {
       <button
         type="button"
         aria-label="Ruaj oferten"
-        className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-primary"
+        className="absolute right-2 top-2 inline-flex h-8 w-8 items-center justify-center text-muted-foreground transition-colors hover:text-primary"
       >
         <Heart className="h-4 w-4" />
       </button>
