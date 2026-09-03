@@ -42,11 +42,12 @@ export function JobCard({ job }: { job: JobOffer }) {
 
       {/* Logo / foto e ofertes */}
       <div className="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden border border-border bg-muted sm:h-20 sm:w-20">
+        <span className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-primary">
+          {companyInitial(job.company)}
+        </span>
         {job.image_path ? (
-          <JobImage path={job.image_path} alt={job.title} className="h-full w-full" />
-        ) : (
-          <span className="text-2xl font-bold text-primary">{companyInitial(job.company)}</span>
-        )}
+          <JobImage path={job.image_path} alt={job.title} className="relative z-10 h-full w-full" />
+        ) : null}
       </div>
 
       {/* Titulli / kompania / kategoria */}
