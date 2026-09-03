@@ -11,9 +11,6 @@ import {
   Globe,
   GraduationCap,
   Home as HomeIcon,
-  MessageCircle,
-  Search,
-  Send,
   Users,
   Utensils,
 } from "lucide-react";
@@ -65,24 +62,6 @@ const QUICK_CATEGORIES = [
   { icon: Globe, label: "Jashte vendit" },
   { icon: Utensils, label: "HOREKA" },
   { icon: GraduationCap, label: "Internship" },
-];
-
-const STEPS = [
-  {
-    icon: Search,
-    title: "Shiko oferten",
-    text: "Zgjidh nga ofertat aktive sipas qytetit dhe llojit te punes qe te pershtatet.",
-  },
-  {
-    icon: Send,
-    title: "Apliko ne 1 minute",
-    text: "Ploteso formularin e shkurter — pa llogari, pa CV te detyrueshme.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Merr pergjigje ne WhatsApp",
-    text: "Aplikimi shkon direkt ne WhatsApp-in tone dhe ju kontaktojme shpejt.",
-  },
 ];
 
 const TESTIMONIALS = [
@@ -273,42 +252,6 @@ function Home() {
             ))}
           </div>
         )}
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section className="bg-secondary/60 py-20">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-            Procesi
-          </p>
-          <h2 className="mt-2 text-center font-display text-3xl font-normal sm:text-4xl">
-            Si Funksionon
-          </h2>
-          <p className="mx-auto mt-3 max-w-lg text-center text-muted-foreground">
-            Tre hapa te thjeshte nga oferta deri ne kontakt.
-          </p>
-
-          <div className="relative mt-14">
-            <div className="absolute left-6 top-0 hidden h-full w-px bg-gradient-to-b from-accent via-accent/50 to-transparent md:left-1/2 md:block" />
-            <div className="grid gap-8 md:grid-cols-3 md:gap-6">
-              {STEPS.map((step, i) => (
-                <div
-                  key={step.title}
-                  className="relative rounded-2xl border border-border bg-card p-7 shadow-[var(--shadow-card)] md:text-center"
-                >
-                  <span className="absolute -top-5 left-6 inline-flex h-10 w-10 items-center justify-center rounded-lg border-2 border-background bg-accent text-sm font-bold text-accent-foreground shadow-[var(--shadow-glow)] md:left-1/2 md:-translate-x-1/2">
-                    {i + 1}
-                  </span>
-                  <div className="pt-4">
-                    <step.icon className="mb-3 h-5 w-5 text-accent md:mx-auto" />
-                    <h3 className="text-lg font-bold">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* TESTIMONIALS */}
