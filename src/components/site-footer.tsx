@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import footerBgAsset from "@/assets/footer-bg.png.asset.json";
 import logoAsset from "@/assets/logo.png.asset.json";
 import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
@@ -8,8 +9,13 @@ const COPYRIGHT_YEAR = 2026;
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 bg-gradient-hero text-primary-foreground">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
+    <footer className="relative mt-24 overflow-hidden bg-gradient-hero text-primary-foreground">
+      <div
+        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${footerBgAsset.url})` }}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-primary/85" />
+      <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2.5">
             <img
