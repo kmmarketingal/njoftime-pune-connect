@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, CalendarDays, Heart, MapPin } from "lucide-react";
+import { CalendarDays, Heart, MapPin } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,69 +22,76 @@ export function JobCard({ job }: { job: JobOffer }) {
   const remaining = daysRemaining(job.expires_at);
 
   return (
-    <div className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-card)] transition-all duration-300 hover:border-accent/40 hover:shadow-[var(--shadow-lift)] sm:flex-row sm:items-center sm:gap-5 sm:p-5">
-      {/* Foto e ofertes ose inicialja e kompanise */}
-      {job.image_path ? (
-        <div className="h-32 w-full shrink-0 overflow-hidden rounded-xl bg-primary-soft sm:h-20 sm:w-20">
+    <div className="group relative flex items-start gap-4 rounded-xl bg-accent/15 p-4 transition-colors duration-200 hover:bg-accent/25 sm:items-center sm:gap-5">
+      {/* Logo / foto e ofertes */}
+      <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full bg-card sm:h-16 sm:w-16">
+        {job.image_path ? (
           <JobImage path={job.image_path} alt={job.title} className="h-full w-full" />
-        </div>
-      ) : (
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary-soft text-lg font-bold text-primary">
-          {companyInitial(job.company)}
-        </div>
-      )}
+        ) : (
+          <span className="text-lg font-bold text-primary">{companyInitial(job.company)}</span>
+        )}
+      </div>
 
-
-      {/* Main content */}
-      <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge className="rounded-full bg-primary-soft px-3 py-1 text-xs text-secondary-foreground hover:bg-primary-soft">
+      {/* Titulli / kompania / kategoria */}
+      <div className="min-w-0 flex-1 pr-8 sm:pr-0">
+        <h3 className="text-base font-bold leading-snug text-foreground transition-colors group-hover:text-primary sm:text-lg">
+          <Link to="/pune/$id" params={{ id: job.id }}>
+            {job.title}
+          </Link>
+        </h3>
+        {job.company ? (
+          <p className="truncate text-sm font-medium text-muted-foreground">{job.company}</p>
+        ) : null}
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <Badge className="rounded-md bg-card px-2.5 py-0.5 text-xs font-medium text-foreground hover:bg-card">
             {job.job_type}
           </Badge>
           {job.salary ? (
-            <Badge className="rounded-full bg-accent/15 px-3 py-1 text-xs text-accent-foreground hover:bg-accent/15">
-              <span className="text-accent">{job.salary}</span>
+            <Badge className="rounded-md bg-card px-2.5 py-0.5 text-xs font-medium text-primary hover:bg-card">
+              {job.salary}
             </Badge>
           ) : null}
         </div>
-
-        <h3 className="mt-2 text-lg font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
-          {job.title}
-        </h3>
-        {job.company ? (
-          <p className="text-sm font-medium text-muted-foreground">{job.company}</p>
-        ) : null}
-
-        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5">
-            <MapPin className="h-4 w-4 text-accent" />
-            {job.city || "Sipas marreveshjes"}
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <CalendarDays className="h-4 w-4 text-accent" />
-            {formatDate(job.created_at)}
-          </span>
-          {remaining !== null && remaining > 0 && (
-            <span className="text-xs font-medium text-whatsapp">edhe {remaining} dite</span>
-          )}
-        </div>
       </div>
 
-      {/* Actions */}
-      <div className="flex shrink-0 items-center gap-2 sm:flex-col sm:items-end md:flex-row md:items-center">
-        <button
-          type="button"
-          aria-label="Ruaj oferten"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-accent/10 hover:text-accent"
-        >
-          <Heart className="h-5 w-5" />
-        </button>
-        <Button asChild variant="hero" size="sm" className="rounded-full px-5">
+      {/* Info: vendndodhje / data / afati */}
+      <div className="hidden w-44 shrink-0 flex-col gap-1 text-sm text-muted-foreground sm:flex">
+        <span className="inline-flex items-center gap-1.5">
+          <MapPin className="h-4 w-4 text-primary" />
+          {job.city || "Sipas marreveshjes"}
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <CalendarDays className="h-4 w-4 text-primary" />
+          {formatDate(job.created_at)}
+        </span>
+        {remaining !== null && remaining > 0 && (
+          <span className="text-xs font-medium text-foreground/70">edhe {remaining} dite</span>
+        )}
+      </div>
+
+      {/* Aksionet */}
+      <div className="flex shrink-0 items-center gap-2 self-end sm:self-center">
+        <Button asChild variant="hero" size="sm" className="rounded-md px-4">
           <Link to="/pune/$id" params={{ id: job.id }}>
             Me shume
-            <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
+      </div>
+
+      <button
+        type="button"
+        aria-label="Ruaj oferten"
+        className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:text-primary"
+      >
+        <Heart className="h-4 w-4" />
+      </button>
+
+      {/* Info mobile */}
+      <div className="absolute bottom-3 right-3 flex items-center gap-3 text-xs text-muted-foreground sm:hidden">
+        <span className="inline-flex items-center gap-1">
+          <MapPin className="h-3.5 w-3.5 text-primary" />
+          {job.city || "—"}
+        </span>
       </div>
     </div>
   );
