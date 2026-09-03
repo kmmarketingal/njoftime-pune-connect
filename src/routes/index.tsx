@@ -67,24 +67,14 @@ const STATS = [
 ];
 
 const QUICK_CATEGORIES = [
-  { icon: Clock, label: "Pune part-time" },
-  { icon: HomeIcon, label: "Pune nga shtepia" },
-
+  { icon: Clock, label: "Part-time" },
+  { icon: HomeIcon, label: "Nga shtepia" },
   { icon: Building2, label: "Kompanite" },
   { icon: Users, label: "Pa eksperience" },
-  { icon: CalendarDays, label: "Punet e dites" },
-  { icon: Globe, label: "Pune jashte vendit" },
+  { icon: CalendarDays, label: "Pune dite" },
+  { icon: Globe, label: "Jashte vendit" },
   { icon: Utensils, label: "HOREKA" },
   { icon: GraduationCap, label: "Internship" },
-];
-
-const PROMO_BENEFITS = [
-  "Pune te verifikuara",
-  "Njoftime te perditesuara",
-  "Publikim i lehte",
-  "Njoftime te besueshme",
-  "Njoftime sipas profilit",
-  "Dhe me shume...",
 ];
 
 const STEPS = [
