@@ -21,7 +21,6 @@ import {
 
 
 import heroMarketingAsset from "@/assets/hero-marketing-v2.png.asset.json";
-import logoAsset from "@/assets/logo.png.asset.json";
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
@@ -33,7 +32,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { activeJobsQuery, ALBANIA_CITIES, KOSOVO_CITIES, WHATSAPP_NUMBER } from "@/lib/jobs";
+import { activeJobsQuery, ALBANIA_CITIES, KOSOVO_CITIES } from "@/lib/jobs";
 
 
 export const Route = createFileRoute("/")({
