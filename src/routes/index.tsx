@@ -11,6 +11,7 @@ import {
   Globe,
   GraduationCap,
   Home as HomeIcon,
+  Search,
   Users,
   Utensils,
 } from "lucide-react";
