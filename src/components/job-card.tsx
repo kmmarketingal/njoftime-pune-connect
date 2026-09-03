@@ -86,13 +86,6 @@ export function JobCard({ job }: { job: JobOffer }) {
         <Heart className="h-4 w-4" />
       </button>
 
-      {/* Info mobile */}
-      <div className="absolute bottom-3 right-3 flex items-center gap-3 text-xs text-muted-foreground sm:hidden">
-        <span className="inline-flex items-center gap-1">
-          <MapPin className="h-3.5 w-3.5 text-primary" />
-          {job.city || "—"}
-        </span>
-      </div>
     </div>
   );
 }
