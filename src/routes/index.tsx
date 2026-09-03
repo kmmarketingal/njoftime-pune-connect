@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import {
   ArrowRight,
-  BadgeCheck,
   Briefcase,
   Building2,
   CalendarDays,
@@ -56,11 +55,6 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const STATS = [
-  { icon: BadgeCheck, value: "1.200+", label: "Pune te plotesuara" },
-  { icon: Users, value: "3.500+", label: "Punetore te vendosur" },
-  { icon: Building2, value: "180+", label: "Partnere & kompani" },
-];
 
 const QUICK_CATEGORIES = [
   { icon: Clock, label: "Part-time" },
@@ -248,29 +242,6 @@ function Home() {
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="border-b border-border bg-background">
-        <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
-          <div className="grid gap-6 sm:grid-cols-3">
-            {STATS.map((stat) => (
-              <div
-                key={stat.label}
-                className="flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-4 shadow-[var(--shadow-card)]"
-              >
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-primary">
-                  <stat.icon className="h-4 w-4" />
-                </span>
-                <div>
-                  <p className="font-display text-2xl font-normal leading-none text-primary">
-                    {stat.value}
-                  </p>
-                  <p className="mt-0.5 text-xs font-medium text-muted-foreground">{stat.label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FEATURED JOBS */}
       <section className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
