@@ -296,7 +296,7 @@ function Home() {
                   key={step.title}
                   className="relative rounded-2xl border border-border bg-card p-7 shadow-[var(--shadow-card)] md:text-center"
                 >
-                  <span className="absolute -top-5 left-6 inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-background bg-accent text-sm font-bold text-accent-foreground shadow-[var(--shadow-glow)] md:left-1/2 md:-translate-x-1/2">
+                  <span className="absolute -top-5 left-6 inline-flex h-10 w-10 items-center justify-center rounded-lg border-2 border-background bg-accent text-sm font-bold text-accent-foreground shadow-[var(--shadow-glow)] md:left-1/2 md:-translate-x-1/2">
                     {i + 1}
                   </span>
                   <div className="pt-4">
