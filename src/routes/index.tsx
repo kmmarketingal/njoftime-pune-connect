@@ -8,14 +8,11 @@ import {
   Briefcase,
   Building2,
   CalendarDays,
-  CheckCircle2,
   Clock,
   Globe,
   GraduationCap,
   Home as HomeIcon,
-  Mail,
   MessageCircle,
-  Phone,
   Search,
   Send,
   Users,
@@ -24,7 +21,6 @@ import {
 
 
 import heroMarketingAsset from "@/assets/hero-marketing-v2.png.asset.json";
-import logoAsset from "@/assets/logo.png.asset.json";
 import { JobCard } from "@/components/job-card";
 import { SiteShell } from "@/components/site-shell";
 import { Button } from "@/components/ui/button";
@@ -36,7 +32,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { activeJobsQuery, ALBANIA_CITIES, KOSOVO_CITIES, WHATSAPP_NUMBER } from "@/lib/jobs";
+import { activeJobsQuery, ALBANIA_CITIES, KOSOVO_CITIES } from "@/lib/jobs";
 
 
 export const Route = createFileRoute("/")({
@@ -67,24 +63,14 @@ const STATS = [
 ];
 
 const QUICK_CATEGORIES = [
-  { icon: Clock, label: "Pune part-time" },
-  { icon: HomeIcon, label: "Pune nga shtepia" },
-
+  { icon: Clock, label: "Part-time" },
+  { icon: HomeIcon, label: "Nga shtepia" },
   { icon: Building2, label: "Kompanite" },
   { icon: Users, label: "Pa eksperience" },
-  { icon: CalendarDays, label: "Punet e dites" },
-  { icon: Globe, label: "Pune jashte vendit" },
+  { icon: CalendarDays, label: "Pune dite" },
+  { icon: Globe, label: "Jashte vendit" },
   { icon: Utensils, label: "HOREKA" },
   { icon: GraduationCap, label: "Internship" },
-];
-
-const PROMO_BENEFITS = [
-  "Pune te verifikuara",
-  "Njoftime te perditesuara",
-  "Publikim i lehte",
-  "Njoftime te besueshme",
-  "Njoftime sipas profilit",
-  "Dhe me shume...",
 ];
 
 const STEPS = [
@@ -169,37 +155,37 @@ function Home() {
           style={{ backgroundImage: `url(${heroMarketingAsset.url})` }}
         />
         <div className="pointer-events-none absolute inset-0 bg-primary/80" />
-        <div className="relative mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 lg:py-20">
+        <div className="relative mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className="text-balance-tight font-display text-3xl font-normal leading-[1.1] sm:text-4xl lg:text-5xl">
-              Gjej punen e duhur, pa humbur kohe
+            <h1 className="text-balance-tight font-display text-2xl font-normal leading-[1.1] sm:text-3xl lg:text-4xl">
+              Oferta pune ne Shqiperi dhe Kosove
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-primary-foreground/80 sm:text-lg">
-              Oferta pune reale ne Shqiperi dhe Kosove. Apliko dhe merr pergjigje ne WhatsApp.
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-primary-foreground/80 sm:text-base">
+              Apliko pa regjistrim — pergjigja vjen ne WhatsApp.
             </p>
 
             {/* Search bar */}
-            <div className="mt-8 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/10 p-2 backdrop-blur-sm sm:rounded-full">
+            <div className="mt-6 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/10 p-2 backdrop-blur-sm sm:rounded-full">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-primary-foreground/60" />
                   <Input
-                    placeholder="Fjale kyce, pozicion, kompani..."
+                    placeholder="Pozicion, kompani..."
                     value={keyword}
                     onChange={(e) => setKeyword(e.target.value)}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") runSearch();
                     }}
-                    className="h-12 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 pl-10 text-primary-foreground placeholder:text-primary-foreground/50 focus-visible:ring-accent sm:rounded-full"
+                    className="h-11 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 pl-10 text-primary-foreground placeholder:text-primary-foreground/50 focus-visible:ring-accent sm:rounded-full"
                   />
                 </div>
-                <div className="flex-1 sm:max-w-[200px]">
+                <div className="flex-1 sm:max-w-[180px]">
                   <Select value={category} onValueChange={setCategory}>
-                    <SelectTrigger className="h-12 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 text-primary-foreground focus:ring-accent sm:rounded-full [&>span]:text-primary-foreground/50">
-                      <SelectValue placeholder="Zgjidh kategorine" />
+                    <SelectTrigger className="h-11 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 text-primary-foreground focus:ring-accent sm:rounded-full [&>span]:text-primary-foreground/50">
+                      <SelectValue placeholder="Kategoria" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="__all__">Te gjitha kategorite</SelectItem>
+                      <SelectItem value="__all__">Te gjitha</SelectItem>
                       <SelectItem value="Kohe e plote">Kohe e plote</SelectItem>
                       <SelectItem value="Kohe e pjesshme">Kohe e pjesshme</SelectItem>
                       <SelectItem value="Sezonale">Sezonale</SelectItem>
@@ -208,13 +194,13 @@ function Home() {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex-1 sm:max-w-[200px]">
+                <div className="flex-1 sm:max-w-[180px]">
                   <Select value={location} onValueChange={setLocation}>
-                    <SelectTrigger className="h-12 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 text-primary-foreground focus:ring-accent sm:rounded-full [&>span]:text-primary-foreground/50">
-                      <SelectValue placeholder="Vendndodhje" />
+                    <SelectTrigger className="h-11 rounded-xl border-primary-foreground/10 bg-primary-foreground/10 text-primary-foreground focus:ring-accent sm:rounded-full [&>span]:text-primary-foreground/50">
+                      <SelectValue placeholder="Qyteti" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="__all__">Te gjitha qytetet</SelectItem>
+                      <SelectItem value="__all__">Te gjitha</SelectItem>
                       <SelectItem value="__albania__">Shqiperi</SelectItem>
                       {ALBANIA_CITIES.map((c) => (
                         <SelectItem key={c} value={c}>
@@ -233,12 +219,11 @@ function Home() {
                 <Button
                   variant="hero"
                   size="lg"
-                  className="h-12 rounded-xl px-7 sm:rounded-full"
+                  className="h-11 rounded-xl px-6 sm:rounded-full"
                   onClick={runSearch}
                 >
                   Kërko
                 </Button>
-
               </div>
             </div>
           </div>
@@ -247,13 +232,13 @@ function Home() {
 
       {/* QUICK CATEGORIES */}
       <section className="border-b border-border bg-background">
-        <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+        <div className="mx-auto w-full max-w-6xl px-4 py-5 sm:px-6">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8">
             {QUICK_CATEGORIES.map((cat) => (
               <Link
                 key={cat.label}
                 to="/pune"
-                className="group flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2.5 text-sm font-medium text-foreground shadow-[var(--shadow-card)] transition-all hover:border-accent/40 hover:bg-primary-soft hover:text-primary"
+                className="group flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground shadow-[var(--shadow-card)] transition-all hover:border-accent/40 hover:bg-primary-soft hover:text-primary"
               >
                 <cat.icon className="h-4 w-4 shrink-0 text-accent transition-colors group-hover:text-primary" />
                 <span className="truncate">{cat.label}</span>
@@ -263,87 +248,23 @@ function Home() {
         </div>
       </section>
 
-      {/* PROMO BANNER */}
-      <section className="bg-background pb-6 pt-2">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <p className="mb-1 text-xs text-muted-foreground">Reklame</p>
-          <div className="relative overflow-hidden rounded-2xl bg-primary px-6 py-8 text-primary-foreground shadow-[var(--shadow-lift)] sm:px-10 lg:py-10">
-            <div className="pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-20 right-20 h-48 w-48 rounded-full bg-accent/10 blur-3xl" />
-            <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto_1fr]">
-              <div className="flex items-center gap-4">
-                <img
-                  src={logoAsset.url}
-                  alt="Logo Njoftime Pune"
-                  width={64}
-                  height={64}
-                  className="h-16 w-16 rounded-2xl bg-primary-foreground object-contain p-1"
-                />
-                <div>
-                  <p className="font-sans text-lg font-bold">NJOFTIME PUNE</p>
-                  <p className="text-xs uppercase tracking-wider text-primary-foreground/70">
-                    Gjej punen tende
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
-                {PROMO_BENEFITS.map((b) => (
-                  <span key={b} className="inline-flex items-center gap-2 text-sm">
-                    <CheckCircle2 className="h-4 w-4 text-accent" />
-                    {b}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex flex-col items-start gap-3 lg:items-end">
-                <p className="text-sm font-semibold text-accent">Gjej punen tende!</p>
-                <Button
-                  asChild
-                  variant="hero"
-                  size="lg"
-                  className="rounded-full px-7"
-                >
-                  <Link to="/pune">
-                    KLIKO KETU
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-                <div className="flex flex-col gap-1 text-xs text-primary-foreground/70">
-                  <a href="mailto:info@njoftimepune.al" className="inline-flex items-center gap-1.5 hover:text-primary-foreground">
-                    <Mail className="h-3.5 w-3.5" />
-                    info@njoftimepune.al
-                  </a>
-                  <a href="tel:+355689504445" className="inline-flex items-center gap-1.5 hover:text-primary-foreground">
-                    <Phone className="h-3.5 w-3.5" />
-                    +355 68 950 4445
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* STATS */}
       <section className="border-b border-border bg-background">
-        <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
-          <div className="grid gap-10 md:grid-cols-3">
-            {STATS.map((stat, i) => (
+        <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
+          <div className="grid gap-6 sm:grid-cols-3">
+            {STATS.map((stat) => (
               <div
                 key={stat.label}
-                className={`relative flex items-start gap-5 ${
-                  i !== STATS.length - 1 ? "md:border-r md:border-border md:pr-8" : ""
-                }`}
+                className="flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-4 shadow-[var(--shadow-card)]"
               >
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-                  <stat.icon className="h-5 w-5" />
+                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-primary">
+                  <stat.icon className="h-4 w-4" />
                 </span>
                 <div>
-                  <p className="font-display text-4xl font-normal leading-none text-primary">
+                  <p className="font-display text-2xl font-normal leading-none text-primary">
                     {stat.value}
                   </p>
-                  <p className="mt-1.5 text-sm font-medium text-muted-foreground">{stat.label}</p>
+                  <p className="mt-0.5 text-xs font-medium text-muted-foreground">{stat.label}</p>
                 </div>
               </div>
             ))}
